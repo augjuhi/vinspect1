@@ -1,4 +1,4 @@
-import adapter from 'webrtc-adapter';
+
 let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')
@@ -14,7 +14,7 @@ const constraints = {
     audio: false
   };  
 //get stream
-navigator.mediaDevices.getUserMedia(constraints)
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

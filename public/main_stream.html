@@ -5,11 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="main.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
+    <style>
+    .custom-checkbox{
+    zoom:1.2 ;     
+    margin-bottom:4%
+    }
+    
+    #submit{
+    zoom:1.2 ;
+    margin-left:36%
+    }
+    
+    #permissions {
+    padding-left: 9%;
+    padding-right: 9%;
+    margin-bottom: 10%;
+}
+    
+    #heads {
+    
+    padding: 0px;
+    
+    }
+    
+    .jumbotron {
+    border-radius:0px !important;    
+    background:#2b2c92 !important;
+    color:white !important;
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+}
+
+ 
+
+#logo{
+
+ 
+
+    height: 30px;
+
+ 
+
+}
+
+ 
+
+#company-logo{
+    margin-top: 2px;
+    height: 28px;
+    padding-top: 1px;
+
+ 
+
+}
+
+ 
+
+#company-border {
+    width: 100%;
+    margin-top: -58px;
+    margin-bottom: 15%;
+}
+
+ 
+
+ @media all and (max-width: 479px)  {
+.footer  {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+padding:5%;   
+   text-align: center;
+}}
+
+ 
+
+.footer  {   
+   left: 0;
+   bottom: 0;
+   width: 100%;
+padding:5%;   
+   text-align: center;
+}
+
+ 
+
+#red{
+    animation:blinkingText 1.2s infinite;
+    vertical-align: middle;
+    margin-left: -5px;
+    height: 25px;
+    display: inline-block;
+}
+@keyframes blinkingText{
+    0%{opacity: 100%;}
+    
+    25%{    opacity: 75%;  }
+    40%{    opacity: 50%;  }
+    50%{    opacity: 0%;   }
+    60%{    opacity: 50%;  }
+    75%{    opacity: 75%;  }
+
+ 
+
+    100%{   opacity: 100%;}
+}
+.form_admin div {float:left;}
+
+
+ 
+
+ 
+
+    </style>
 
 <body>
-    <div class="container-fluid">
-        <div class="row h-10 w-100">
+    <div class="container-fluid" style="padding-right: 0px !important; padding-left: 0px !important;">
+	  <div class="container" id="heads" style="padding-right: 0px !important; padding-left: 0px !important;">
+  <nav class="navbar navbar-expand-lg static-top" style="background:#2b2c92 !important;">
+  <div class="container" id="logo" style="display:inline">
+   
+        <img id="company-logo" src="img/LTI.png"/>
+        <h5 style="margin-bottom: 20px;display:inline;vertical-align: middle;color:white" > - Live Streaming</h5> 
+        <img id="red" src="img/red.png"/>
+  </div>
+      
+</nav>
+     
+</div>
+        <div class="row h-10 w-100" style="display:none !important;">
             <div class="col">
                 <select id="filter" class="w-100 bg-dark text-light ml-2 mt-2 select font-weight-bold border">
                     <option value="none">Normal</option>
@@ -31,13 +159,19 @@
                 </div>
             </div>
         </div>
-        <div class="row h-90 w-100">
-            <div class="col-12 col-sm-6 d-flex justify-content-center">
+        <div class="row h-90" style="margin: 1px !important;">
+            <div class="col-12 col-sm-6 d-flex justify-content-center" style="padding-right: 0px !important; padding-left: 0px !important;">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <video class="embed-responsive-item" muted></video>
+                    <video class="embed-responsive-item" style="height:auto !important;" muted></video>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 d-flex justify-content-center">
+			<div class="cselect" >  
+  <label for="videoSource">Video input source: </label>
+        <select id="videoSource">
+        
+        </select>
+</div>
+            <div class="col-12 col-sm-6 d-flex justify-content-center" style="display:none !important;">
                 <div id="peerDiv" class="embed-responsive embed-responsive-16by9">
                 </div>
             </div>
@@ -46,6 +180,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="bundle.js"></script>
+	
 </body>
 
 </html>

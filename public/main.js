@@ -6,8 +6,11 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
+const videoConstraints = {
+    facingMode: 'environment'
+  };
 //get stream
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true })
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

@@ -9,8 +9,12 @@ let currentFilter
 const videoConstraints = {
     facingMode: 'environment'
   };
+const constraints = {
+    video: videoConstraints,
+    audio: false
+  };  
 //get stream
-navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true })
+navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

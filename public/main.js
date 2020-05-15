@@ -6,11 +6,11 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
-alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
-console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
+/* alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
+console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
 const videoConstraints = {
-    facingMode:{exact: 'environment'}
+    facingMode:'user'
   };
 const constraints = {
     video: videoConstraints,

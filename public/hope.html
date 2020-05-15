@@ -14,134 +14,6 @@
 
     <title>VidSpection</title>
   </head>
-<style>
-
- 
-
-    .custom-checkbox{
-    zoom:1.2 ;
-    margin-bottom:4%
-    }
-
- 
-
-    #submit{
-    zoom:1.2 ;
-    margin-left:36%
-    }
-
- 
-
-    #permissions {
-    padding-left: 9%;
-    padding-right: 9%;
-    margin-bottom: 10%;
-}
-
- 
-
-    #heads {
-
- 
-
-    padding: 0px;
-
- 
-
-    }
-
- 
-
-    .jumbotron {
-    border-radius:0px !important;
-    background:#2b2c92 !important;
-    color:white !important;
-    padding: 2rem 2rem;
-    margin-bottom: 2rem;
-}
-
- 
-
-#logo{
-
- 
-
-    height: 30px;
-
- 
-
-}
-
- 
-
-#company-logo{
-    margin-top: 2px;
-    height: 28px;
-    padding-top: 1px;
-
- 
-
-}
-
- 
-
-#company-border {
-    width: 100%;
-    margin-top: -58px;
-    margin-bottom: 15%;
-}
-
- 
-
- @media all and (max-width: 479px)  {
-.footer  {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-padding:5%;
-   text-align: center;
-}}
-
- 
-
-.footer  {
-   left: 0;
-   bottom: 0;
-   width: 100%;
-padding:5%;
-   text-align: center;
-}
-
- 
-
-#red{
-    animation:blinkingText 1.2s infinite;
-    vertical-align: middle;
-    margin-left: -5px;
-    height: 25px;
-    display: inline-block;
-}
-@keyframes blinkingText{
-    0%{opacity: 100%;}
-
- 
-
-    25%{    opacity: 75%;  }
-    40%{    opacity: 50%;  }
-    50%{    opacity: 0%;   }
-    60%{    opacity: 50%;  }
-    75%{    opacity: 75%;  }
-
- 
-
-    100%{   opacity: 100%;}
-}
-
- 
-
-
-</style>
 
  
 
@@ -249,7 +121,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 
 var videoSelect = document.querySelector('select#videoSource');
-videoSelect.onchange = getStream;
+<!-- videoSelect.onchange = getStream; -->
 
  
 
@@ -279,8 +151,8 @@ function gotDevices(deviceInfos) {
 }
 
  
-
-function getStream() {
+<!--
+ function getStream() {
   if (window.stream) {
     window.stream.getTracks().forEach(track => {
       track.stop();
@@ -300,11 +172,12 @@ function getStream() {
  
 
 function gotStream(stream) {
-  window.stream = stream; // make stream available to console
+  window.stream = stream; 
   videoSelect.selectedIndex = [...videoSelect.options].
     findIndex(option => option.text === stream.getVideoTracks()[0].label);
   video.srcObject = stream;
-}
+} 
+-->
 
  
 

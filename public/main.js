@@ -7,7 +7,7 @@ const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
 const videoConstraints = {
-    facingMode:{exact: 'environment'}
+    facingMode:{exact: 'user'}
   };
 const constraints = {
     video: videoConstraints,

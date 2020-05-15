@@ -10,7 +10,7 @@ alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 
 const videoConstraints = {
-    facingMode:{exact: 'user'}
+    facingMode:{exact: 'environment'}
   };
 const constraints = {
     video: videoConstraints,

@@ -193,7 +193,20 @@ padding:5%;
 
 
   <script>
-
+const video = document.querySelector('video');
+  
+const constraints = {
+    video: true,
+    audio: false
+  };  
+//get stream
+MediaDevices.mediaDevices.getUserMedia(constraints)
+    .then(stream => {
+        socket.emit('NewClient')
+        video.srcObject = stream
+        video.play()
+		});
+		
  
 
  

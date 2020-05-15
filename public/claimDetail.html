@@ -16,7 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<title>ClaimDetails</title>
+<title>Virtual Inspection</title>
 <body>
 	<section>
 	 <nav class="navbar navbar-default"></nav>
@@ -123,7 +123,7 @@
 					<td>000765534221</td>
 					<td>(089) 636-48018</td>
 					<td>yes</td>
-					<td align="center"><a href="adj_editing_backup.html">
+					<td align="center"><a onclick="loadDoc()">
 					<img src="css/imgs/sms-Logo.png" /></a></td>
 					<!-- <td align="center">
 						<form method="POST" action="adj_editing_backup.html" modelAttribute="command">
@@ -225,4 +225,20 @@
 		</div>
 	</div>
 </body>
+<script>
+function loadDoc() {
+  var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey=T3AYQBQJ4AM06KA6Y46IZG99EGB8XRTT&secret=DW69LWY54AUDK8S5&usetype=stage&phone=9167049022&message=https:\/\/tinyurl.com\/vinspect&senderid=Homer_Simpson"; 	
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.withCredentials = true;
+  xhttp.send();
+  
+window.location.href="adj_editing_backup.html"  
+}
+</script>
 </html>

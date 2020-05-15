@@ -1,4 +1,4 @@
-
+import adapter from 'webrtc-adapter';
 let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')
@@ -6,11 +6,11 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
-/* alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
+/*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
 const videoConstraints = {
-    facingMode:'user'
+    facingMode:{exact: 'environment'}
   };
 const constraints = {
     video: videoConstraints,
@@ -155,7 +155,105 @@ function CreateDiv() {
 
 /* Our Code For Finding Number of Device Sources */
 
+const video = document.querySelector('video');
+  
+const constraints = {
+    video: true,
+    audio: false
+  };  
+//get stream
+MediaDevices.mediaDevices.getUserMedia(constraints)
+    .then(stream => {
+        socket.emit('NewClient')
+        video.srcObject = stream
+        video.play()
+		});
+		
+ 
 
+ 
+
+/* 
+<!-- const constraints = {
+  video: true
+};
+const video = document.querySelector('video');
+
+ 
+
+navigator.mediaDevices.getUserMedia(constraints).
+  then((stream) => {video.srcObject = stream});
+'use strict'; --> */
+
+ 
+
+
+var videoSelect = document.querySelector('select#videoSource');
+/* <!-- videoSelect.onchange = getStream; --> */
+
+ 
+
+
+getDevices().then(gotDevices);
+
+ 
+
+function getDevices() {
+  // AFAICT in Safari this only gets default devices until gUM is called :/
+  return navigator.mediaDevices.enumerateDevices();
+}
+
+ 
+
+function gotDevices(deviceInfos) {
+  window.deviceInfos = deviceInfos; // make available to console
+  console.log('Available input and output devices:', deviceInfos);
+  for (const deviceInfo of deviceInfos) {
+    const option = document.createElement('option');
+    option.value = deviceInfo.deviceId;
+  if (deviceInfo.kind === 'videoinput') {
+      option.text = deviceInfo.label || `Camera ${videoSelect.length + 1}`;
+      videoSelect.appendChild(option);
+    }
+  }
+}
+
+ 
+/* 
+ function getStream() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  }
+
+ 
+
+  const videoSource = videoSelect.value;
+  const constraints = {
+    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
+  return navigator.mediaDevices.getUserMedia(constraints).
+    then(gotStream).catch(handleError);
+}
+
+ 
+
+function gotStream(stream) {
+  window.stream = stream; 
+  videoSelect.selectedIndex = [...videoSelect.options].
+    findIndex(option => option.text === stream.getVideoTracks()[0].label);
+  video.srcObject = stream;
+} 
+ */
+
+ 
+
+ 
+
+function handleError(error) {
+  console.error('Error: ', error);
+}
 
  
 

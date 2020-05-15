@@ -14,7 +14,7 @@ const constraints = {
     audio: false
   };  
 //get stream
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+MediaDevices.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

@@ -1,0 +1,176 @@
+<html>
+
+<head>
+<title>Video Chat App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="main.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+
+<style type="text/css">
+#claimTable td {
+	font-size: 14px;
+}
+
+#tablemain th {
+	font-size: 12px;
+}
+
+video {
+	width: 100%;
+	height: auto;
+}
+</style>
+</head>
+
+<body>
+	 <!-- <nav class="navbar navbar-default navbar-fixed-top"
+		id="transient-header"></nav> -->
+	<nav class="navbar navbar-expand-lg  navbarBGcolor fixed-top padzero">
+		<div class="box effect2">
+			<nav class="navbar navbar-default ct_navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="css/imgs/LTIlogo.png" align="top" />
+						<ul class="nav navbar-nav navbar-right pull-right marzero padzero">
+							<li><img src="css/imgs/abcins-c.PNG"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</nav>
+	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padzero">
+		<div class="header1" style="color: red;">
+			<span class="internal_header">Claim Details</span> &nbsp;&nbsp; Claim
+			Number : <input type="text" placeholder="" name="ClaimNo">
+			&nbsp;&nbsp; Mobile Number : <input type="text" placeholder=""
+				name="MobileNo"> &nbsp;&nbsp;
+		</div>
+	</div>
+	
+	<table class="table table-bordered" id="tablemain">
+		<thead>
+			<tr>
+				<th>Claim Details</th>
+				<th>Live Streaming</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<div>
+						<table class="table marzero" id="claimTable">
+							<tbody>
+							<tr></tr>
+							<tr>
+								<td style="color: #0000ff">ClaimNumber  </td>
+								<td><input type="text" class="form-control" /></td>
+							</tr>
+							<tr>
+								<td style="color: #0000ff">MobileNumber</td>
+								<td><input type="text" class="form-control" /></td>
+							</tr>
+							<tr>
+								<td style="color: #0000ff">Note</td>
+								<td><textarea id="w3mission" rows="06" cols="25"></textarea></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button type="SUBMIT" class="btn btn-success"
+										style="height: 30px; width: 150px; background-color: #e7e7e7; color: black;">Resend
+										SMS</button>
+								</td>
+							</tr>
+							<tr>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</td>
+				<td>
+					<div class="container-fluid">
+						<div class="row h-10 w-100" style="display: none">
+							<div class="col">
+								<select id="filter"
+									class="w-100 bg-dark text-light ml-2 mt-2 select font-weight-bold border">
+									<option value="none">Normal</option>
+									<option value="grayscale(100%)">B & W</option>
+									<option value="sepia(100%)">Old School</option>
+									<option value="contrast(150%)">Lumination</option>
+									<option value="blur(20px)">Hidden Mist</option>
+									<option value="invert(100%)">Dracula</option>
+									<option value="hue-rotate(180deg">X-men Beast</option>
+									<option value="saturate(25)">Super Saiyan God</option>
+								</select>
+							</div>
+							<div class="col">
+								<div class="float-right mt-3">
+									<input class="form-check-input" type="checkbox" id="theme">
+									<label class="form-check-label" for="theme"> Dark Theme
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row h-100 w-100" style="margin: 20px 20px 0px 0px;">
+							<div class="col-12 col-sm-6 d-flex justify-content-center"
+								style="display: none !important">
+								<div class="embed-responsive embed-responsive-16by9">
+									<video class="embed-responsive-item" muted></video>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 d-flex justify-content-center"
+								style="width: 950px">
+								<div id="peerDiv"
+									class="embed-responsive embed-responsive-16by9"></div>
+							</div>
+						</div>
+					</div>
+									
+					<div class="Video">
+						<button id="btn-start-recording" type="button"
+							class="btn btn-success" style="height: 30px; width: 150px">Start
+							Recording</button>
+						<button id="btn-stop-recording" type="button"
+							style="height: 30px; width: 150px" class="btn btn-danger">Stop
+							Recording</button>
+						<button id="btn-reset-recording" type="button"
+							class="btn btn-warning" style="height: 30px; width: 150px">Reset
+							Camera</button>
+						<button type="button" class="btn btn-primary"
+							style="height: 30px; width: 150px">Take Snap</button>
+						<button type="button" class="btn btn-info"
+							style="height: 30px; width: 150px">Annotate Picture</button>
+						<script src="js/mystream.js"> </script>
+
+					</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<footer class="footer">
+		<div class="row padzero">
+			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="footer-widget">
+					<img src="css/imgs/20yrs.png"></img>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="bundle.js"></script>
+</body>
+
+</html>

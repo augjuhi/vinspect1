@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- custom -->
+<link href="css/app.css" rel="stylesheet">
+<link href="css/table.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="js/filterClaim.js" type="text/javascript"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<title>ClaimDetails</title>
+<body>
+	<section>
+	 <nav class="navbar navbar-default"></nav>
+	 <nav class="navbar navbar-default navbar-fixed-top" id="transient-header">
+		<div class="box effect2">
+			<nav class="navbar navbar-default ct_navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="css/imgs/LTIlogo.png" />
+						<ul class="nav navbar-nav navbar-right pull-right marzero padzero">
+							<li><img src="css/imgs/abcins.PNG"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</nav>
+	</section>
+	<br/>
+	<h3>CLAIM SUMMARY</h3>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Filter By:</div>
+		<table class="table">
+			<tr>
+				<td>
+					<div>
+						<b>ClaimNumber:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="claimno" onkeyup="CliamNoFilter()">
+						<!-- <input type="text" name="ClaimNumber"> -->
+					</div>
+				</td>
+				<td>
+					<div>
+						<b>Claimant Name:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="claimantName" onkeyup="ClimantNameFilter()">
+						<!-- <input type="text" name="Claimant Name"> -->
+					</div>
+				</td>
+				<td>
+					<div>
+						<b>ClaimStatus:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="claimno">
+						<!-- <input type="text" name="ClaimNumber"> -->
+					</div>
+					<br />
+					<!-- <div align="center">
+					<button type="button" class="btn btn-primary active" style="background-color:SlateBlue;">SUBMIT</button>
+					</div> -->
+					<!-- <div align="center">
+					 <button type="button" class="btn btn-primary active" style="background-color:Tomato;">RESET</button>
+					</div> -->
+				</td>
+				<td>
+					<div>
+						<b>PolicyNumber:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="policyNum" onkeyup="policyNumFilter()">
+					</div>
+				</td>
+				<td>
+					<div>
+						<b>MobileNumber:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="mobileNum" onkeyup="mobileNumFilter()">
+						<!-- <input type="text" name="MobileNumber"> -->
+					</div>
+				</td>
+				<td>
+					<div>
+						<b>InspectionStatus:</b>
+					</div>
+					<div>
+					<input type="text" class="form-control" id="claimno">
+						<!-- <input type="text" name="inspStatus"> -->
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="panel">
+		<div>
+			<table id="customers">
+				<tr>
+					<th>ClaimNumber</th>
+					<th>Claimant Name</th>
+					<th>Claim Status</th>
+					<th>PolicyNumber</th>
+					<th>MobileNumber</th>
+					<th>InspectionStatus</th>
+					<th>sendSMS</th>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td> Christopher </td>
+					<td>Active </td>
+					<td>000765534221</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<!-- <td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td> -->
+					<td align="center">
+						<form method="POST" action="adj_editing_backup.html" modelAttribute="command">
+						<input type="image" src="css/imgs/sms-Logo.png" alt="submit"/>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td> Anderson </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(541) 754-3010</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td> Harris </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(541) 754-3010</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Williams </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(541) 754-3010</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Campbell </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(541) 754-3010</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Kimberly </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Hernandez</td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Scott Steven</td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>Mark Charles </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+				<tr>
+					<td>000-000-00-0103</td>
+					<td>John David </td>
+					<td>Active </td>
+					<td>000123456456</td>
+					<td>(089) 636-48018</td>
+					<td>yes</td>
+					<td align="center"><a href="AdjusterPage.html"><img
+							src="css/imgs/sms-Logo.png" /></a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Virtual Inspection</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="main.css" rel="stylesheet">
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function()
+			{
+				$("#tablemain").simpleResizableTable(); //.css('background-color', 'red');
+				
+			});
+</script>
+<style type="text/css">
+#claimTable td {
+	font-size: 14px;
+}
+#tablemain th {
+	font-size: 12px;
+}
+ video {
+	width: 100%;
+	height: auto;
+} 
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top"
+		id="transient-header"></nav>
+	<nav class="navbar navbar-expand-lg  navbarBGcolor fixed-top padzero">
+		<div class="box effect2">
+			<nav class="navbar navbar-default ct_navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="css/imgs/LTIlogo.png" align="top" />
+						<ul class="nav navbar-nav navbar-right pull-right marzero padzero">
+							<li><img src="css/imgs/abcins.PNG"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</nav>
+	<!-- <section> -->
+	<!-- <div class="ct_main_container"> -->
+	<!-- <div class="row marzero"> -->
+	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padzero">
+		<div class="header1" style="color: red;">
+			<span class="internal_header">Claim Details</span> &nbsp;&nbsp; Claim
+			Number : <input type="text" placeholder="" name="ClaimNo">
+			&nbsp;&nbsp; Mobile Number : <input type="text" placeholder=""
+				name="MobileNo"> &nbsp;&nbsp;
+		</div>
+	</div>
+	<!-- </div> -->
+
+	<table class="table marzero" id="tablemain" border="1">
+		<thead>
+			<tr>
+				<th>Claim Details</th>
+				<th>Live Streaming</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><table class="table marzero" id="claimTable">
+							<!-- <tbody> -->
+							<tr></tr>
+							<tr>
+								<td style="color: #0000ff">Claim Number</td>
+								<td><input type="text" class="form-control"/></td>
+							</tr>
+							<tr>
+								<td style="color: #0000ff">Mobile Number</td>
+								<td><input type="text" class="form-control"/></td>
+							</tr>
+							<tr>
+								<td style="color: #0000ff">Note</td>
+								<td><textarea id="w3mission" rows="06" cols="25"></textarea></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button type="SUBMIT" class="btn btn-success"
+										style="height: 30px; width: 150px; background-color: #e7e7e7; color: black;">Resend
+										SMS</button>
+								</td>
+							</tr>
+							<tr>
+							</tr>
+							
+						</table>
+					</td>
+					<td>
+					 <div class="container-fluid">
+       
+        <div class="row h-90 w-100">
+            <div class="col-12 col-sm-6 d-flex justify-content-center">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video class="embed-responsive-item" muted></video>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 d-flex justify-content-center">
+			<div id="peerDiv" class="embed-responsive embed-responsive-16by9">
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="bundle.js"></script>
+</td>
+			
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+	<footer class="footer">
+		<div class="row padzero">
+			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="footer-widget">
+					<img src="css/imgs/20yrs.png"></img>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

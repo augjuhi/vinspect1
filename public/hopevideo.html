@@ -12,14 +12,24 @@
 <video id="myvideocopy" playsinline autoplay>
 
 </video>
+<button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
+    <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
+    
+    <a id="download">Download</a>
+
 </body>
 
 <script>
 
-'use strict';
+ var mediaRecorder; // globally accessible
+        const options = {mimeType: 'video/webm'};
+        var recordedChunks = [];
+        var downloadLink = document.getElementById('download');
+
+        function captureCamera() {
+           'use strict';
 const leftVideo = document.getElementById('myvideo');
 const rightVideo = document.getElementById('myvideocopy');
-leftVideo.addEventListener('canplay', () => {
   let stream;
   const fps = 0;
   if (leftVideo.captureStream) {
@@ -30,7 +40,35 @@ leftVideo.addEventListener('canplay', () => {
     console.error('Stream capture is not supported');
     stream = null;
   }
-  rightVideo.srcObject = stream;
-});
+startCameraRecording(stream)
+}
+
+        function startCameraRecording(stream) {
+            document.getElementById('btn-start-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false;
+				
+                mediaRecorder = new MediaRecorder(stream, options);
+
+                mediaRecorder.addEventListener('dataavailable', function(e) {
+                  if (e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                    console.log("e.data="+e.data);
+                  }
+                });
+                  mediaRecorder.start();
+                  InitUploading();
+        }
+
+        function stopRecording() {
+            document.getElementById('btn-stop-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false;
+            video.controls = true;
+            mediaRecorder.stop();
+            mediaRecorder.addEventListener('stop', function() {
+                downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
+                downloadLink.download = 'acetest.webm';
+              });
+
+        }
 </script>
 </html>

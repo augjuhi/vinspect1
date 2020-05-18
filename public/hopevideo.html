@@ -61,7 +61,6 @@ startCameraRecording(stream)
 
         function stopRecording() {
             document.getElementById('btn-stop-recording').disabled = true;
-            document.getElementById('upload-video').disabled = false;
             document.getElementById('btn-start-recording').disabled = false;
             mediaRecorder.stop();
             mediaRecorder.addEventListener('stop', function() {
@@ -76,7 +75,7 @@ startCameraRecording(stream)
             console.log("recordedChunks="+recordedChunks);
             console.log("blob="+blob)
             var xhr=new XMLHttpRequest();
-            xhr.open("POST","stream1",true);
+            xhr.open("POST","index",true);
             xhr.onload=function(e) {
                if(this.readyState === 4) {
                    console.log("Server returned: ",e.target.responseText);

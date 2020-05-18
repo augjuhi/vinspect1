@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<video id="myvideo"width="320" height="240" crossOrigin="anonymous" playsinline loop controls>
+  <source src="movie.mp4" type="video/mp4">
+  
+  Your browser does not support the video tag.
+</video>
+
+	
+<video id="myvideocopy" playsinline autoplay>
+
+</video>
+</body>
+
+<script>
+
+'use strict';
+const leftVideo = document.getElementById('myvideo');
+const rightVideo = document.getElementById('myvideocopy');
+leftVideo.addEventListener('canplay', () => {
+  let stream;
+  const fps = 0;
+  if (leftVideo.captureStream) {
+    stream = leftVideo.captureStream(fps);
+  } else if (leftVideo.mozCaptureStream) {
+    stream = leftVideo.mozCaptureStream(fps);
+  } else {
+    console.error('Stream capture is not supported');
+    stream = null;
+  }
+  rightVideo.srcObject = stream;
+});
+</script>
+</html>

@@ -22,7 +22,7 @@
 <script>
 
  var mediaRecorder; // globally accessible
-        const options = {mimeType: 'video/webm'};
+        const options = {mimeType: 'video/mp4'};
         var recordedChunks = [];
         var downloadLink = document.getElementById('download');
 
@@ -65,13 +65,13 @@ startCameraRecording(stream)
             mediaRecorder.stop();
             mediaRecorder.addEventListener('stop', function() {
                 downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
-                downloadLink.download = 'acetest.webm';
+                downloadLink.download = 'VidInspection.mp4';
               });
 
         }
 		function InitUploading() {
             // get recorded blob
-            blob = new Blob(recordedChunks,{'type' : 'video/webm'});
+            blob = new Blob(recordedChunks,{'type' : 'video/mp4'});
             console.log("recordedChunks="+recordedChunks);
             console.log("blob="+blob)
             var xhr=new XMLHttpRequest();
@@ -82,7 +82,7 @@ startCameraRecording(stream)
                }
             };
             var fd=new FormData();
-            fd.append("name", "testfile.webm");
+            fd.append("name", "testfile.mp4");
             fd.append("file", blob);
 // 			var reader = new FileReader();
 //  			var base64data;

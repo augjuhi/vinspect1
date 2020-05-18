@@ -61,14 +61,37 @@ startCameraRecording(stream)
 
         function stopRecording() {
             document.getElementById('btn-stop-recording').disabled = true;
+            document.getElementById('upload-video').disabled = false;
             document.getElementById('btn-start-recording').disabled = false;
-            video.controls = true;
             mediaRecorder.stop();
             mediaRecorder.addEventListener('stop', function() {
                 downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
                 downloadLink.download = 'acetest.webm';
               });
 
+        }
+		function InitUploading() {
+            // get recorded blob
+            blob = new Blob(recordedChunks,{'type' : 'video/webm'});
+            console.log("recordedChunks="+recordedChunks);
+            console.log("blob="+blob)
+            var xhr=new XMLHttpRequest();
+            xhr.open("POST","stream1",true);
+            xhr.onload=function(e) {
+               if(this.readyState === 4) {
+                   console.log("Server returned: ",e.target.responseText);
+               }
+            };
+            var fd=new FormData();
+            fd.append("name", "testfile.webm");
+            fd.append("file", blob);
+// 			var reader = new FileReader();
+//  			var base64data;
+//  			reader.readAsDataURL(blob); 
+//  			reader.onloadend = function() {
+//       		base64data = reader.result; 
+//  			}
+            xhr.send(fd);
         }
 </script>
 </html>

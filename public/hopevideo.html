@@ -35,7 +35,7 @@ function myFunction() {
 
         function captureCamera() {
            'use strict';
-const leftVideo = document.getElementById('myvideo');
+const leftVideo = document.getElementById('peerVideo');
 const rightVideo = document.getElementById('myvideocopy');
   let stream;
   const fps = 0;
@@ -85,27 +85,9 @@ startCameraRecording(stream)
 				this.href = url;
 				this.target = '_blank';
   	
-  	// target filename
 			this.download = 'my-download.webm';
             
-			
-		/* var xhr=new XMLHttpRequest();
-            xhr.open("POST","index",true);
-            xhr.onload=function(e) {
-               if(this.readyState === 4) {
-                   console.log("Server returned: ",e.target.responseText);
-               }
-            };
-            var fd=new FormData();
-            fd.append("name", "testfile.webm");
-            fd.append("file", blob);
-// 			var reader = new FileReader();
-//  			var base64data;
-//  			reader.readAsDataURL(blob); 
-//  			reader.onloadend = function() {
-//       		base64data = reader.result; 
-//  			}
-            xhr.send(fd); */
+
         }
 		
 </script>

@@ -1,26 +1,5 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<video id="myvideo"width="320" height="240" crossOrigin="anonymous" playsinline loop controls>
-  <source src="movie.mp4" type="video/mp4">
-  
-  Your browser does not support the video tag.
-</video>
-
-	
-<video id="myvideocopy" playsinline autoplay>
-
-</video>
-<button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
-    <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
-	    <button id="btn-stop-recording" onclick="captureScreen()">Capture Screen</button>
-
-    <a id="myButton" href="#">Download JSON</button>
-    <a id="download">Download</a>
-
-</body>
-
 <script>
 
  var mediaRecorder; // globally accessible
@@ -126,4 +105,26 @@ webshot("https://wwww.google.com","snap.png",options,function(err){
 }	
 		
 </script>
+<body>
+
+<video id="myvideo"width="320" height="240" crossOrigin="anonymous" playsinline loop controls>
+  <source src="movie.mp4" type="video/mp4">
+  
+  Your browser does not support the video tag.
+</video>
+
+	
+<video id="myvideocopy" playsinline autoplay>
+
+</video>
+<button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
+    <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
+	    <button id="btn-stop-recording" onclick="captureScreen()">Capture Screen</button>
+
+    <a id="myButton" href="#">Download JSON</button>
+    <a id="download">Download</a>
+
+</body>
+
+
 </html>

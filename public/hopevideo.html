@@ -14,6 +14,8 @@
 </video>
 <button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
     <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
+	    <button id="btn-stop-recording" onclick="captureScreen()">Capture Screen</button>
+
     <a id="myButton" href="#">Download JSON</button>
     <a id="download">Download</a>
 
@@ -100,5 +102,28 @@ startCameraRecording(stream)
 //  			}
             xhr.send(fd); -->
         }
+function captureScreen(){
+var webshot = require("webshot");
+ 
+var options={
+    streamType:"png",
+    windowSize:{
+        width: 1024,
+        height:786
+    },
+    shotSize:{
+        width:"all",
+        height:"all"
+    }
+};
+ 
+webshot("https://wwww.google.com","snap.png",options,function(err){
+    if(err){
+        return console.log(err);
+    }
+    console.log("Image saved!");
+});	
+}	
+		
 </script>
 </html>

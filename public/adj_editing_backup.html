@@ -23,7 +23,7 @@
 			});
 	</script>
 	<script>
-	function sendfirstSMS() {
+	function loadDoc() {
   var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey=T3AYQBQJ4AM06KA6Y46IZG99EGB8XRTT&secret=DW69LWY54AUDK8S5&usetype=stage&phone=9969799513&message=https:\/\/tinyurl.com\/vinspect&senderid=Homer_Simpson"; 	
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -110,7 +110,7 @@
 							<tr>
 								<td></td>
 								<td>
-									<button type="button" onclick="sendSms()" class="btn btn-success"
+									<button type="button" onclick="loadDoc()" class="btn btn-success"
 										style="height: 30px; width: 150px; background-color: #e7e7e7; color: black;">
 										Resend SMS</button>
 								</td>

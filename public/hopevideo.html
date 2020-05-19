@@ -19,8 +19,14 @@
 </body>
 
 <script>
- document.onload.getElementById('btn-stop-recording').disabled = true;
 
+document.onload = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById('btn-stop-recording').onload = true;
+}
+ 
+ document.onload = function(){myScript};
  var mediaRecorder; // globally accessible
         const options = {mimeType: 'video/webm'};
         var recordedChunks = [];

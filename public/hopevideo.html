@@ -1,33 +1,5 @@
 <!DOCTYPE html>
 <html>
-<script>
-
-
-function captureScreen(){
-var webshot = require("webshot");
- 
-var options={
-    streamType:"png",
-    windowSize:{
-        width: 1024,
-        height:786
-    },
-    shotSize:{
-        width:"all",
-        height:"all"
-    }
-};
- 
-webshot("https://wwww.google.com","snap.png",options,function(err){
-    if(err){
-        return console.log(err);
-    }
-    console.log("Image saved!");
-});	
-}	
-		
-</script>
-<script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
 <body>
 
 <video id="myvideo"width="320" height="240" crossOrigin="anonymous" playsinline loop controls>
@@ -42,12 +14,92 @@ webshot("https://wwww.google.com","snap.png",options,function(err){
 </video>
 <button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
     <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
-	    <button id="btn-stop-recording" onclick="captureScreen()">Capture Screen</button>
-
     <a id="myButton" href="#">Download JSON</button>
     <a id="download">Download</a>
 
 </body>
 
+<script>
 
+ var mediaRecorder; // globally accessible
+        const options = {mimeType: 'video/webm'};
+        var recordedChunks = [];
+        var downloadLink = document.getElementById('download');
+
+        function captureCamera() {
+           'use strict';
+const leftVideo = document.getElementById('myvideo');
+const rightVideo = document.getElementById('myvideocopy');
+  let stream;
+  const fps = 0;
+  if (leftVideo.captureStream) {
+    stream = leftVideo.captureStream(fps);
+  } else if (leftVideo.mozCaptureStream) {
+    stream = leftVideo.mozCaptureStream(fps);
+  } else {
+    console.error('Stream capture is not supported');
+    stream = null;
+  }
+startCameraRecording(stream)
+}
+
+        function startCameraRecording(stream) {
+            document.getElementById('btn-start-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false;
+				
+                mediaRecorder = new MediaRecorder(stream, options);
+
+                mediaRecorder.addEventListener('dataavailable', function(e) {
+                  if (e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                    console.log("e.data="+e.data);
+                  }
+                });
+                  mediaRecorder.start();
+                  InitUploading();
+        }
+
+        function stopRecording() {
+            document.getElementById('btn-stop-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false;
+            mediaRecorder.stop();
+            mediaRecorder.addEventListener('stop', function() {
+                downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
+                downloadLink.download = 'acetest.webm';
+              });
+
+        }
+		function InitUploading() {
+            // get recorded blob
+            blob = new Blob(recordedChunks,{'type' : 'video/webm'});
+            console.log("recordedChunks="+recordedChunks);
+            console.log("blob="+blob)
+			url = window.URL.createObjectURL(blob);
+				this.href = url;
+				this.target = '_blank';
+  	
+  	// target filename
+			this.download = 'my-download.webm';
+            
+			
+			<!-- var xhr=new XMLHttpRequest();
+            xhr.open("POST","index",true);
+            xhr.onload=function(e) {
+               if(this.readyState === 4) {
+                   console.log("Server returned: ",e.target.responseText);
+               }
+            };
+            var fd=new FormData();
+            fd.append("name", "testfile.webm");
+            fd.append("file", blob);
+// 			var reader = new FileReader();
+//  			var base64data;
+//  			reader.readAsDataURL(blob); 
+//  			reader.onloadend = function() {
+//       		base64data = reader.result; 
+//  			}
+            xhr.send(fd); -->
+        }
+		
+</script>
 </html>

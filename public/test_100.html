@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+document.write("Hello World");
+function captureScreen(){
+var webshot = require("webshot");
+ 
+var options={
+    streamType:"png",
+    windowSize:{
+        width: 1024,
+        height:786
+    },
+    shotSize:{
+        width:"all",
+        height:"all"
+    }
+};
+ 
+webshot("https://wwww.google.com","snap.png",options,function(err){
+    if(err){
+        return console.log(err);
+    }
+    console.log("Image saved!");
+});	
+}	
+		
+</script>
+<script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+<body>
+
+
+
+	
+
+
+
+	    <button id="btn-stop-recording" onclick="captureScreen()">Capture Screen</button>
+
+
+</body>
+
+
+</html>

@@ -14,7 +14,7 @@
 </video>
 <button id="btn-start-recording" onclick="captureCamera()">Start Recording</button>
     <button id="btn-stop-recording" onclick="stopRecording()">Stop Recording</button>
-    
+    <a id="myButton" href="#">Download JSON</button>
     <a id="download">Download</a>
 
 </body>
@@ -74,7 +74,15 @@ startCameraRecording(stream)
             blob = new Blob(recordedChunks,{'type' : 'video/webm'});
             console.log("recordedChunks="+recordedChunks);
             console.log("blob="+blob)
-            var xhr=new XMLHttpRequest();
+			url = window.URL.createObjectURL(blob);
+				this.href = url;
+				this.target = '_blank';
+  	
+  	// target filename
+			this.download = 'my-download.webm';
+            
+			
+			<!-- var xhr=new XMLHttpRequest();
             xhr.open("POST","index",true);
             xhr.onload=function(e) {
                if(this.readyState === 4) {
@@ -90,7 +98,7 @@ startCameraRecording(stream)
 //  			reader.onloadend = function() {
 //       		base64data = reader.result; 
 //  			}
-            xhr.send(fd);
+            xhr.send(fd); -->
         }
 </script>
 </html>

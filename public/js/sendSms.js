@@ -1,7 +1,7 @@
 function sendSms() {
 	
-	var apiKey="YB39OFWMALQSV2L6LLTKKBDXC42CYSCU";
-	var secretCode="KSZO48RA6W67RQ42"
+	var apiKey="GEIRCHYE9R8X2C97Z5JZR3MZCZ45MJPX";
+	var secretCode="AZZDNP57X26TILG9"
 	var phoneNum= document.getElementById("mobileNo").value;
 	var msg = document.getElementById("note").value;
 	alert("APIKey:"+apiKey+"  SecretCode"+secretCode+" "+phoneNum+" msg:"+msg);

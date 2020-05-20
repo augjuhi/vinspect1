@@ -278,9 +278,7 @@ startCameraRecording(stream)
             
 
         }
-		        
-      function snap() {
-			  var video = document.getElementById('peerVideo');
+		          var video = document.getElementById('peerVideo');
 			
 		 var canvas = document.querySelector('canvas');
          var context = canvas.getContext('2d');
@@ -298,10 +296,7 @@ startCameraRecording(stream)
             
 
          },false);
-	  
-	  
-	  
-	  
+      function snap() {
             context.fillRect(0,0,canvas.width,canvas.height);
             context.drawImage(video,100,0,canvas.width,canvas.height);
             var download = document.getElementById("download");   
@@ -311,9 +306,6 @@ startCameraRecording(stream)
          	
          	download.setAttribute("href", imageUrl);
          	//document.getElementById("theimage").src = imageUrl;
-			
-			
-			
       }
 </script>
 

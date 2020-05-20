@@ -171,7 +171,7 @@
 							<a id="download">Download The Stream</a>
 							
 							<canvas id = "canvas" hidden></canvas>
-							<a id="download" download="image.jpeg" onclick="snap()">Download Now</a>
+							<a id="download1" download="image.jpeg" onclick="snap()">Download Now</a>
 							<image src="" id="theimage"></image>
 							<button type="button" class="btn btn-primary"
 								style="height: 30px; width: 150px" onclick = "snap()" download="image.jpeg">Take Snap</button>
@@ -304,7 +304,7 @@ startCameraRecording(stream)
 	  
             context.fillRect(0,0,canvas.width,canvas.height);
             context.drawImage(video,100,0,canvas.width,canvas.height);
-            var download = document.getElementById("download");   
+            var download = document.getElementById("download1");   
          
          	var imageUrl = canvas.toDataURL("image/png")
                   .replace("image/png", "image/octet-stream");

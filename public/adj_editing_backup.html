@@ -11,8 +11,8 @@
 	
 <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-<script type="text/javascript"        src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript"        src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+<script type="text/javascript"        src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript"        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
 	<script type="text/javascript"        src="js/myjs.js"></script>
 	<script type="text/javascript"        src="js/sendSms.js"></script>
 	<script type="text/javascript">
@@ -35,6 +35,11 @@
 	width: 100%;
 	height: auto;
 } 
+
+.srt-draghandle {
+    opacity: 0 ;
+}
+
 </style>
 </head>
 
@@ -153,13 +158,14 @@
 							<button id="btn-stop-recording" type="button"
 								style="height: 30px; width: 150px" class="btn btn-danger" onclick="stopRecording()">Stop
 								Recording</button>
-							<a id="download">Download The Stream</a>
+							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white;" >Download The Stream</a>
 							
 							<canvas id = "canvas" hidden></canvas>
-							<a id="download1" download="image.jpeg" onclick="snap()">Download Now</a>
+							
 							<image src="" id="theimage"></image>
 							<button type="button" class="btn btn-primary"
 								style="height: 30px; width: 150px" onclick = "snap()" download="image.jpeg">Take Snap</button>
+								<a id="download1" download="image.jpeg" onclick="snap()"  style="background-color: #804887;padding: 6px 9px 6px 9px; border-radius: 5px;color: white;"}>Download Snap</a>
 							<button id = "snap" type="button" class="btn btn-info"
 								style="height: 30px; width: 150px">Annotate Picture</button>
 							<script src="js/mystream.js"> </script>

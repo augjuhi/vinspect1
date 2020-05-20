@@ -161,6 +161,7 @@
 						
 						
 						<div class="Video">
+						
 							<button id="btn-start-recording" type="button"
 								class="btn btn-success" style="height: 30px; width: 150px" onclick="captureCamera()">Start
 								Recording</button>
@@ -168,12 +169,13 @@
 								style="height: 30px; width: 150px" class="btn btn-danger" onclick="stopRecording()">Stop
 								Recording</button>
 							<a id="download">Download The Stream</a>
-							<button id="btn-reset-recording" type="button"
-								class="btn btn-warning" style="height: 30px; width: 150px">Reset
-								Camera</button>
+							
+							<canvas id = "canvas" hidden></canvas>
+							<a id="download" download="image.jpeg" onclick="snap()">Download Now</a>
+							<image src="" id="theimage"></image>
 							<button type="button" class="btn btn-primary"
-								style="height: 30px; width: 150px">Take Snap</button>
-							<button type="button" class="btn btn-info"
+								style="height: 30px; width: 150px" onclick = "snap()" download="image.jpeg">Take Snap</button>
+							<button id = "snap" type="button" class="btn btn-info"
 								style="height: 30px; width: 150px">Annotate Picture</button>
 							<script src="js/mystream.js"> </script>
 
@@ -276,6 +278,35 @@ startCameraRecording(stream)
             
 
         }
+		          var video = document.getElementById('peerVideo');
+			
+		 var canvas = document.querySelector('canvas');
+         var context = canvas.getContext('2d');
+         var myWidth, myHeight, ratio;
+         
+         video.addEventListener('loadedmetadata', function() {
+            //ratio = video.videoWidth/video.videoHeight;
+            //myWidth = video.videoWidth-100;
+            //myHeight = parseInt(ratio,10);
+            var reader = new FileReader();
+                       
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            
+            
+
+         },false);
+      function snap() {
+            context.fillRect(0,0,canvas.width,canvas.height);
+            context.drawImage(video,100,0,canvas.width,canvas.height);
+            var download = document.getElementById("download");   
+         
+         	var imageUrl = canvas.toDataURL("image/png")
+                  .replace("image/png", "image/octet-stream");
+         	
+         	download.setAttribute("href", imageUrl);
+         	//document.getElementById("theimage").src = imageUrl;
+      }
 </script>
 
 </html>

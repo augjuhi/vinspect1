@@ -22,22 +22,7 @@
 				
 			});
 	</script>
-	<script>
-	function loadDoc() {
-  var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey=T3AYQBQJ4AM06KA6Y46IZG99EGB8XRTT&secret=DW69LWY54AUDK8S5&usetype=stage&phone=9969799513&message=https:\/\/tinyurl.com\/vinspect&senderid=Homer_Simpson"; 	
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.withCredentials = true;
-  xhttp.send();
-  
 
-}
-	</script>
 	
 <style type="text/css">
 #claimTable td {
@@ -93,7 +78,7 @@
 				<td>
 				<div style="margin-right:40%">
 				<table class="table marzero" id="claimTable">
-							<!-- <tbody> -->
+							<tbody> 
 							<tr></tr>
 							<tr>
 								<td style="color: #0000ff">Claim Number</td>
@@ -117,7 +102,7 @@
 							</tr>
 							<tr>
 							</tr>
-							<!-- </tbody> -->
+							</tbody> 
 						</table>
 					</div>
 				</td>
@@ -151,7 +136,7 @@
                     <video class="embed-responsive-item" muted></video>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 d-flex justify-content-center" style="width:1250px">
+            <div class="col-12 col-sm-6 d-flex justify-content-center">
                 <div id="peerDiv" class="embed-responsive embed-responsive-16by9">
                 </div>
             </div>
@@ -189,27 +174,6 @@
     <script src="bundle.js"></script>
 </body>
 <script>
-function sendSms() {
-	
-	var apiKey="YB39OFWMALQSV2L6LLTKKBDXC42CYSCU";
-	var secretCode="KSZO48RA6W67RQ42"
-	var phoneNum= document.getElementById("mobileNo").value;
-	var msg = document.getElementById("note").value;
-	
-	alert(apiKey+" "+secretCode+" "+phoneNum+" msg:"+msg);
-  var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey="+apiKey+"&secret="+secretCode+"&usetype=stage&phone="+phoneNum+"&message="+msg+"."; 	
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.withCredentials = true;
-  xhttp.send();
- 
-}
-
 
 document.onload = function() {myFunction()};
 

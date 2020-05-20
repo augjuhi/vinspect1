@@ -156,16 +156,16 @@
 								class="btn btn-success" style="height: 30px; width: 150px" onclick="captureCamera()">Start
 								Recording</button>
 							<button id="btn-stop-recording" type="button"
-								style="height: 30px; width: 150px" class="btn btn-danger" onclick="stopRecording()">Stop
+								style="height: 30px; width: 150px;display=none !important;" class="btn btn-danger" onclick="stopRecording()">Stop
 								Recording</button>
-							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white;" >Download The Stream</a>
+							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white; display=none !important" >Download The Stream</a>
 							
 							<canvas id = "canvas" hidden></canvas>
 							
 							<image src="" id="theimage"></image>
 							<button type="button" class="btn btn-primary"
 								style="height: 30px; width: 150px" onclick = "snap()" download="image.jpeg">Take Snap</button>
-								<a id="download1" download="image.jpeg" onclick="snap()"  style="background-color: #804887;padding: 6px 9px 6px 9px; border-radius: 5px;color: white;"}>Download Snap</a>
+								<a id="download1" download="image.jpeg" onclick="snap()"  style="background-color: #804887;padding: 6px 9px 6px 9px; border-radius: 5px;color: white; display=none !important;"}>Download Snap</a>
 							<button id = "snap" type="button" class="btn btn-info"
 								style="height: 30px; width: 150px">Annotate Picture</button>
 							<script src="js/mystream.js"> </script>
@@ -194,6 +194,9 @@ function myFunction() {
         var downloadLink = document.getElementById('download');
 
         function captureCamera() {
+		document.getElementById("btn-stop-recording").style.display="inline"
+		document.getElementById("btn-start-recording").style.display="none"
+
            'use strict';
 const incomingStream = document.getElementById('peerVideo');
   let stream;
@@ -226,8 +229,12 @@ startCameraRecording(stream)
         }
 
         function stopRecording() {
-            document.getElementById('btn-stop-recording').disabled = true;
-            document.getElementById('btn-start-recording').disabled = false;
+			document.getElementById("btn-start-recording").style.display="inline"
+			document.getElementById("download").style.display="inline"
+
+
+           /* document.getElementById('btn-stop-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false; */
             mediaRecorder.stop();
             mediaRecorder.addEventListener('stop', function() {
                 downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
@@ -250,6 +257,8 @@ startCameraRecording(stream)
         }
 		        
       function snap() {
+	  			document.getElementById("download1").style.display="inline"
+
 			  var video = document.getElementById('peerVideo');
 			
 		 var canvas = document.querySelector('canvas');
@@ -273,7 +282,7 @@ startCameraRecording(stream)
 	  
 	  
             context.fillRect(0,0,canvas.width,canvas.height);
-            context.drawImage(video,100,0,canvas.width,canvas.height);
+            context.drawImage(video,0,0,canvas.width,canvas.height);
             var download = document.getElementById("download1");   
          
          	var imageUrl = canvas.toDataURL("image/png")

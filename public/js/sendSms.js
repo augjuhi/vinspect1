@@ -5,7 +5,7 @@ function sendSms() {
 	var phoneNum= document.getElementById("mobileNo").value;
 	var msg = document.getElementById("note").value;
 	alert("APIKey:"+apiKey+"  SecretCode"+secretCode+" "+phoneNum+" msg:"+msg);
-  var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey="+apiKey+"&secret="+secretCode+"&usetype=stage&phone="+phoneNum+"&message="+msg+"."; 	
+  var url ="https://www.sms4india.com/api/v1/sendCampaign?apikey="+apiKey+"&secret="+secretCode+"&usetype=stage&phone="+phoneNum+"&message="+msg; 	
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

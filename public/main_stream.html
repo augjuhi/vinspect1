@@ -203,12 +203,12 @@ padding:5%;
 const constraints = {
   video: true
 };
-//const video1 = document.getElementById('myvideo');
+const video1 = document.getElementById('myvideo');
 
  
 
 navigator.mediaDevices.getUserMedia(constraints).
-  then((stream) => {video.srcObject = stream});
+  then((stream) => {video1.srcObject = stream});
 'use strict';
 
  
@@ -269,7 +269,7 @@ function gotStream(stream) {
   window.stream = stream; 
   videoSelect.selectedIndex = [...videoSelect.options].
     findIndex(option => option.text === stream.getVideoTracks()[0].label);
-  video.srcObject = stream;
+  video1.srcObject = stream;
 } 
 
 

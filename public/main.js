@@ -4,11 +4,19 @@ let socket = io()
 const video = document.querySelector('video')
 const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
+const incomingStream = document.getElementById('myvideo');
 let client = {}
 let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
-
+ if (incomingStream.captureStream) {
+    stream = incomingStream.captureStream(fps);
+  } else if (incomingStream.mozCaptureStream) {
+    stream = incomingStream.mozCaptureStream(fps);
+  } else {
+    console.error('Stream capture is not supported');
+    stream = null;
+  }
 const videoConstraints = {
     facingMode: { 
       exact: 'user'

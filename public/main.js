@@ -3,57 +3,32 @@ let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')
 const filter = document.querySelector('#filter')
-const vidSelect= document.querySelector('select#videoSource');
 const checkboxTheme = document.querySelector('#theme')
-const incomingStream = document.getElementById('myvideo');
 let client = {}
 let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
-const videoConstraints = {
-    facingMode: { 
-      exact: 'user'
-    }
-  };
-const constraints = {
-    video: videoConstraints,
-    audio: false
-  };  
+  
 //get stream
-navigator.mediaDevices.getUserMedia(constraints)
-    .then(stream1 => {
+navigator.mediaDevices.getUserMedia(video:false, audio:true)
+    .then(stream => {
         socket.emit('NewClient')
-        video.srcObject = stream1
+        video.srcObject = stream
         video.play()
 
         filter.addEventListener('change', (event) => {
             currentFilter = event.target.value
             video.style.filter = currentFilter
-			 if (incomingStream.captureStream) {
-			stream1 = incomingStream.captureStream(fps);
-		  } else if (incomingStream.mozCaptureStream) {
-			stream1 = incomingStream.mozCaptureStream(fps);
-		  } else {
-			console.error('Stream capture is not supported');
-			stream1 = null;
-		}
-			video.source = stream1
-			CreateVideo(stream1)
             SendFilter(currentFilter)
             event.preventDefault
         })
-vidSelect.onchange('change', (event) => {
-            video.srcObject = stream1
-			video.play()
-			alert(event)
-			event.preventDefault
-        })
+
         //used to initialize a peer
         function InitPeer(type) {
-            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream1, trickle: false })
-            peer.on('stream', function (stream1) {
-                CreateVideo(stream1)
+            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            peer.on('stream', function (stream) {
+                CreateVideo(stream)
             })
             //This isn't working in chrome; works perfectly in firefox.
             // peer.on('close', function () {

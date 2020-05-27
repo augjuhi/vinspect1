@@ -40,10 +40,11 @@ navigator.mediaDevices.getUserMedia(constraints)
             SendFilter(currentFilter)
             event.preventDefault
         })
-vidSelect.addEventListener('change', (event) => {
+vidSelect.onchange('change', (event) => {
             video.srcObject = stream1
 			video.play()
-			console.log(event)
+			alert(event)
+			event.preventDefault
         })
         //used to initialize a peer
         function InitPeer(type) {

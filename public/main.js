@@ -10,12 +10,12 @@ let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
  if (incomingStream.captureStream) {
-    stream = incomingStream.captureStream(fps);
+    stream1 = incomingStream.captureStream(fps);
   } else if (incomingStream.mozCaptureStream) {
-    stream = incomingStream.mozCaptureStream(fps);
+    stream1 = incomingStream.mozCaptureStream(fps);
   } else {
     console.error('Stream capture is not supported');
-    stream = null;
+    stream1 = null;
   }
 const videoConstraints = {
     facingMode: { 
@@ -30,7 +30,7 @@ const constraints = {
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         socket.emit('NewClient')
-        video.srcObject = stream
+        video.srcObject = stream1
         video.play()
 
         filter.addEventListener('change', (event) => {
@@ -42,7 +42,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         //used to initialize a peer
         function InitPeer(type) {
-            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream1, trickle: false })
             peer.on('stream', function (stream) {
                 CreateVideo(stream)
             })

@@ -28,7 +28,7 @@ const constraints = {
   };  
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)
-    .then(stream => {
+    .then(stream1 => {
         socket.emit('NewClient')
         video.srcObject = stream1
         video.play()

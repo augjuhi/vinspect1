@@ -284,6 +284,12 @@ function handleError(error) {
 }
 
  
+ filter.addEventListener('change', (event) => {
+            currentFilter = event.target.value
+            video.style.filter = currentFilter
+            SendFilter(currentFilter)
+            event.preventDefault
+        })
 
  
 

@@ -288,6 +288,20 @@ function handleError(error) {
  
  filter.addEventListener('change', (event) => {
 			console.log("Style Filter Changed")
+			console.log(event)
+			const video = document.querySelector('video')
+			const incomingStream = document.getElementById('myvideo');
+			  let stream2;
+			  const fps = 0;
+			  if (incomingStream.captureStream) {
+				stream2 = incomingStream.captureStream(fps);
+			  } else if (incomingStream.mozCaptureStream) {
+				stream2 = incomingStream.mozCaptureStream(fps);
+			  } else {
+				console.error('Stream capture is not supported');
+				stream2 = null;
+			  }
+			video.srcObject = stream2
             currentFilter = event.target.value
             video1.style.filter = currentFilter
             SendFilter(currentFilter)

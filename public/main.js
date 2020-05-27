@@ -10,14 +10,7 @@ let client = {}
 let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
- if (incomingStream.captureStream) {
-    stream1 = incomingStream.captureStream(fps);
-  } else if (incomingStream.mozCaptureStream) {
-    stream1 = incomingStream.mozCaptureStream(fps);
-  } else {
-    console.error('Stream capture is not supported');
-    stream1 = null;
-  }
+
 const videoConstraints = {
     facingMode: { 
       exact: 'user'
@@ -37,6 +30,16 @@ navigator.mediaDevices.getUserMedia(constraints)
         filter.addEventListener('change', (event) => {
             currentFilter = event.target.value
             video.style.filter = currentFilter
+			 if (incomingStream.captureStream) {
+			stream1 = incomingStream.captureStream(fps);
+		  } else if (incomingStream.mozCaptureStream) {
+			stream1 = incomingStream.mozCaptureStream(fps);
+		  } else {
+			console.error('Stream capture is not supported');
+			stream1 = null;
+		}
+			video.source = stream1
+			CreateVideo(stream1)
             SendFilter(currentFilter)
             event.preventDefault
         })

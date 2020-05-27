@@ -11,7 +11,7 @@ console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']
 
   
 //get stream
-navigator.mediaDevices.getUserMedia(video:false, audio:true)
+navigator.mediaDevices.getUserMedia({video:false, audio:true})
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

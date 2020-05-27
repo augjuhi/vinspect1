@@ -18,12 +18,7 @@ navigator.mediaDevices.getUserMedia({video:false, audio:true})
         video.srcObject = stream
         video.play()
 
-        filter.addEventListener('change', (event) => {
-            currentFilter = event.target.value
-            video.style.filter = currentFilter
-            SendFilter(currentFilter)
-            event.preventDefault
-        })
+        
 
         //used to initialize a peer
         function InitPeer(type) {

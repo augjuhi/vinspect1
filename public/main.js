@@ -43,8 +43,8 @@ navigator.mediaDevices.getUserMedia(constraints)
         //used to initialize a peer
         function InitPeer(type) {
             let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream1, trickle: false })
-            peer.on('stream', function (stream) {
-                CreateVideo(stream)
+            peer.on('stream1', function (stream1) {
+                CreateVideo(stream1)
             })
             //This isn't working in chrome; works perfectly in firefox.
             // peer.on('close', function () {

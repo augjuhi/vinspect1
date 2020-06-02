@@ -164,7 +164,7 @@ padding:5%;
         <div class="row h-90" style="margin: 1px !important;">
             <div class="col-12 col-sm-6 d-flex justify-content-center" style="padding-right: 0px !important; padding-left: 0px !important;">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <video class="embed-responsive-item" style="height:auto !important;" muted></video>
+                    <video id="yourVideo" class="embed-responsive-item" style="height:auto !important;" muted></video>
                 </div>
             </div>
 			
@@ -291,7 +291,7 @@ function handleError(error) {
  filter.addEventListener('change', (event) => {
 			console.log("Style Filter Changed")
 			console.log(event)
-			const video3 = document.getElementById('myvideo2')
+			const video3 = document.getElementById('yourVideo')
 			const incomingStream = document.getElementById('myvideo');
 			  let stream2;
 			  const fps = 0;

@@ -291,7 +291,7 @@ function handleError(error) {
  filter.addEventListener('change', (event) => {
 			console.log("Style Filter Changed")
 			console.log(event)
-			const video = document.querySelector('myvideo2')
+			const video3 = document.querySelector('myvideo2')
 			const incomingStream = document.getElementById('myvideo');
 			  let stream2;
 			  const fps = 0;
@@ -304,7 +304,7 @@ function handleError(error) {
 				console.error('Stream capture is not supported');
 				stream2 = null;
 			  } */
-			video.srcObject = stream2
+			video3.srcObject = stream2
             currentFilter = event.target.value
             video1.style.filter = currentFilter
             SendFilter(currentFilter)

@@ -187,6 +187,8 @@ padding:5%;
     <div>
         <video width="100%" controls id="myvideo" autoplay></video>
 
+        <video width="100%" controls id="myvideo2" autoplay></video>
+
  
 
     </div>
@@ -289,7 +291,7 @@ function handleError(error) {
  filter.addEventListener('change', (event) => {
 			console.log("Style Filter Changed")
 			console.log(event)
-			const video = document.querySelector('video')
+			const video = document.querySelector('myvideo2')
 			const incomingStream = document.getElementById('myvideo');
 			  let stream2;
 			  const fps = 0;

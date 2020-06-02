@@ -203,10 +203,14 @@ padding:5%;
 </body>
  
   <script>
+const videoConstraints = {
+    facingMode:'environment'
+  };
 
 const constraints = {
-  video: true
+  video: videoConstraints
 };
+
 const video1 = document.getElementById('myvideo');
 
  

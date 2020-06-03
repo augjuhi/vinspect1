@@ -8262,7 +8262,7 @@ function CreateDiv() {
         document.querySelector('#muteText').style.color = "#fff"
 }
 
-function toggleStream(){
+document.getElementById("flpCam").addEventListener("click", function(){
 if( stream == null ) return
 // we need to flip, stop everything
  stream.getTracks().forEach(t => {
@@ -8271,7 +8271,7 @@ if( stream == null ) return
 vToggle = !vToggle
 startmyStream()
  
-}
+})
 
 
 

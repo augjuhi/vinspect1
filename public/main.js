@@ -10,9 +10,16 @@ alert("No Need")
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
+const videoConstraints = {
+    facingMode:'environment'
+  };
+  
+  const constraints = {
+  video: videoConstraints
+};
   
 //get stream
-navigator.mediaDevices.getUserMedia({video:true, audio:true})
+MediaDevices.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = document.getElementById('myvideo').captureStream(0)

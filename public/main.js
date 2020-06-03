@@ -1,4 +1,4 @@
-import adapter from 'webrtc-adapter';
+// import adapter from 'webrtc-adapter';
 let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')

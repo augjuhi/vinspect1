@@ -8115,7 +8115,7 @@ let currentFilter
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
 const videoConstraints = {
-    facingMode:'user'
+    facingMode:{exact:'environment'}
   };
 const constraints = {
     video: videoConstraints,

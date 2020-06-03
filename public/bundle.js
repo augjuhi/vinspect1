@@ -8116,13 +8116,13 @@ console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']
 
 /*const videoConstraints = {
     facingMode:'user'
-  };
+  };*/
 const constraints = {
-    video: videoConstraints,
+    video: true,
     audio: false
-  };  */
+  };  
 //get stream
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

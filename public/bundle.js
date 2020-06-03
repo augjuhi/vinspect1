@@ -8111,6 +8111,8 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
+let stream
+
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 let vToggle = false ;

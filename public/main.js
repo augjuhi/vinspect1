@@ -6,14 +6,14 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
-let stream
+
 
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 let vToggle = false ;
 startmyStream()
 function startmyStream(){
-	
+console.log("Starting of startmystream")	
 
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
@@ -160,6 +160,19 @@ function CreateDiv() {
 }
 
 document.getElementById("flpCam").addEventListener("click", function(){
+	alert("We are here")
+const incomingStream = document.getElementById('myVideo');
+  let stream;
+  const fps = 0;
+  if (incomingStream.captureStream) {
+    stream = incomingStream.captureStream(fps);
+  } else if (incomingStream.mozCaptureStream) {
+    stream = incomingStream.mozCaptureStream(fps);
+  } else {
+    console.error('Stream capture is not supported');
+    stream = null;
+  }
+
 if( stream == null ) return
 // we need to flip, stop everything
  stream.getTracks().forEach(t => {

@@ -13,7 +13,7 @@ console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']
 let vToggle = false ;
 startmyStream()
 function startmyStream(){
-console.log("Starting of startmystream")	
+alert("Starting of startmystream")	
 
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
@@ -180,7 +180,7 @@ if( stream == null ) return
  t.stop();
 }); */
 socket.close()
-setTimeout(() => {  console.log("World!"); }, 5000);
+setTimeout(() => {  alert("World!"); }, 5000);
 vToggle = !vToggle
 startmyStream()
  

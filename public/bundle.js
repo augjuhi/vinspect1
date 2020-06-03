@@ -8284,7 +8284,8 @@ if( stream == null ) return
  stream.getTracks().forEach(t => {
  t.stop();
 }); */
-socket.disconnect()
+socket.close()
+setTimeout(() => {  console.log("World!"); }, 5000);
 vToggle = !vToggle
 startmyStream()
  

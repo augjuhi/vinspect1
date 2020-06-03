@@ -9,8 +9,10 @@ let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 let vToggle = false ;
+toggleStream()
+function toggleStream(){
+	
 
- 
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
   };
@@ -126,7 +128,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 
     })
     .catch(err => document.write(err))
-
+} 
 checkboxTheme.addEventListener('click', () => {
     if (checkboxTheme.checked == true) {
         document.body.style.backgroundColor = '#212529'

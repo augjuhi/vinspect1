@@ -206,7 +206,7 @@ const constraints = {
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
-        socket.socket.reconnect()
+        socket.socket.connect()
         video.srcObject = stream
         video.play()
 

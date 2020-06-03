@@ -8113,9 +8113,11 @@ let client = {}
 let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
+let vToggle = false ;
 
+ 
 const videoConstraints = {
-    facingMode:{exact:'user'}
+    facingMode:{exact:vToggle ? 'environment' : 'user'}
   };
 const constraints = {
     video: videoConstraints,

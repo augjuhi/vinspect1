@@ -8284,8 +8284,8 @@ if( stream == null ) return
  stream.getTracks().forEach(t => {
  t.stop();
 }); */
-//socket.close()
-client.peer.destroy()
+socket.disconnect()
+//client.peer.destroy()
 setTimeout(() => {  alert("World!"); }, 5000);
 vToggle = !vToggle
 restartmyStream()

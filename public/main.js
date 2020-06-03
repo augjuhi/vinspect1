@@ -1,4 +1,4 @@
-import adapter from 'webrtc-adapter';
+//import adapter from 'webrtc-adapter';
 let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')
@@ -179,8 +179,8 @@ if( stream == null ) return
  stream.getTracks().forEach(t => {
  t.stop();
 }); */
-//socket.close()
-client.peer.destroy()
+socket.disconnect()
+//client.peer.destroy()
 setTimeout(() => {  alert("World!"); }, 5000);
 vToggle = !vToggle
 restartmyStream()

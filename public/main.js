@@ -1,6 +1,6 @@
 import adapter from 'webrtc-adapter';
 let Peer = require('simple-peer')
-let socket = io()
+let socket
 const video = document.querySelector('video')
 const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
@@ -14,7 +14,7 @@ let vToggle = false ;
 startmyStream()
 function startmyStream(){
 alert("Starting of startmystream")	
-
+socket = io()
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
   };
@@ -183,7 +183,7 @@ socket.disconnect()
 //client.peer.destroy()
 setTimeout(() => {  alert("World!"); }, 5000);
 vToggle = !vToggle
-restartmyStream()
+startmyStream()
  
 })
 

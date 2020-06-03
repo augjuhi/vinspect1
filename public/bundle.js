@@ -8283,6 +8283,7 @@ if( stream == null ) return
  stream.getTracks().forEach(t => {
  t.stop();
 });
+socket.emit('Disconnect')
 vToggle = !vToggle
 startmyStream()
  

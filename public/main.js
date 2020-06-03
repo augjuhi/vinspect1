@@ -161,6 +161,7 @@ function CreateDiv() {
 
 document.getElementById("flpCam").addEventListener("click", function(){
 	alert("We are here")
+	/*
 const incomingStream = document.getElementById('myVideo');
   let stream;
   const fps = 0;
@@ -177,7 +178,7 @@ if( stream == null ) return
 // we need to flip, stop everything
  stream.getTracks().forEach(t => {
  t.stop();
-});
+}); */
 socket.emit('Disconnect')
 vToggle = !vToggle
 startmyStream()

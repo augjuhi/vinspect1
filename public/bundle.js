@@ -8114,11 +8114,11 @@ let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
-/*const videoConstraints = {
+const videoConstraints = {
     facingMode:'user'
-  };*/
+  };
 const constraints = {
-    video: true,
+    video: videoConstraints,
     audio: false
   };  
 //get stream

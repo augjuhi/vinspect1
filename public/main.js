@@ -9,15 +9,15 @@ let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 
-const videoConstraints = {
+/*const videoConstraints = {
     facingMode:'user'
   };
 const constraints = {
     video: videoConstraints,
     audio: false
-  };  
+  };  */
 //get stream
-MediaDevices.mediaDevices.getUserMedia(constraints)
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream

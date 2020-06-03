@@ -9,8 +9,8 @@ let currentFilter
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 let vToggle = false ;
-toggleStream()
-function toggleStream(){
+startmyStream()
+function startmyStream(){
 	
 
 const videoConstraints = {
@@ -129,6 +129,7 @@ navigator.mediaDevices.getUserMedia(constraints)
     })
     .catch(err => document.write(err))
 } 
+
 checkboxTheme.addEventListener('click', () => {
     if (checkboxTheme.checked == true) {
         document.body.style.backgroundColor = '#212529'
@@ -155,6 +156,19 @@ function CreateDiv() {
     if (checkboxTheme.checked == true)
         document.querySelector('#muteText').style.color = "#fff"
 }
+
+function toggleStream(){
+if( stream == null ) return
+// we need to flip, stop everything
+ stream.getTracks().forEach(t => {
+ t.stop();
+});
+vToggle = !vToggle
+startmyStream()
+ 
+}
+
+
 
 
 /* Our Code For Finding Number of Device Sources */

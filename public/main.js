@@ -13,7 +13,6 @@ console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']
 let vToggle = false ;
 startmyStream()
 function startmyStream(){
-alert("Starting of startmystream")	
 socket = io()
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
@@ -160,28 +159,11 @@ function CreateDiv() {
 }
 
 document.getElementById("flpCam").addEventListener("click", function(){
-	alert("We are here")
-	/*
-const incomingStream = document.getElementById('myVideo');
-  let stream;
-  const fps = 0;
-  if (incomingStream.captureStream) {
-    stream = incomingStream.captureStream(fps);
-  } else if (incomingStream.mozCaptureStream) {
-    stream = incomingStream.mozCaptureStream(fps);
-  } else {
-    console.error('Stream capture is not supported');
-    stream = null;
-  }
+	
 
-if( stream == null ) return
-// we need to flip, stop everything
- stream.getTracks().forEach(t => {
- t.stop();
-}); */
 socket.disconnect()
-//client.peer.destroy()
-setTimeout(() => {  alert("World!"); }, 5000);
+
+
 vToggle = !vToggle
 startmyStream()
  

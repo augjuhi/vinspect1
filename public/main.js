@@ -20,7 +20,7 @@ const videoConstraints = {
   };
 const constraints = {
     video: videoConstraints,
-    audio: false
+    audio: true
   };  
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)

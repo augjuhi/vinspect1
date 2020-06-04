@@ -1,63 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-	rel="stylesheet">
-	<link href="css/login.css" rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-	<script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+
+.row {  
+  height: 100vh
+}
+
+
+.column {
+  float: left;
+  
+ 
+  height: 100%;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+
+
+</style>
+
+<script>
 function myFunction() {
   location.replace("claimDetail.html")
 }
 </script>
-<title>Insert title here</title>
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto" id="login">
-				<div class="card card-signin my-5">
-					<div class="card-body">
-						<img src="css/imgs/abcins.PNG"/>
-						<h5 class="card-title text-center"></h5>
-						<!-- <form class="form-signin" action="/claimDetails" method="post"> -->
-							<div class="form-label-group">
-								<input type="text" id="uname" class="form-control"
-									placeholder="User Name" required autofocus> <label
-									for="text">User Name</label>
-							</div>
+<body style="background-color:#3588ff;margin:0px">
 
-							<div class="form-label-group">
-								<input type="password" id="inputPassword" class="form-control"
-									placeholder="Password" required> <label
-									for="inputPassword">Password</label>
-							</div>
+<div class="row">
+  <div class="column" style="background-color:#ffffff; width:60%">
+    <video style="height: 100%;"autoplay>
+  <source src="img/vi.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video>
+  </div>
+  <div class="column" style="background-color:#ffffff;width:40%;padding: 7% 4% 3% 4%;">
+    <form >
+  <div class="container">
+  <div style="float: right;">
+  <img src="img/logo.png" style="height: 75px"/></div>
+    <h1 style="font-family:sans-serif">Virtual Inspection</h1>
+   
+    <hr>
 
-							<div class="custom-control custom-checkbox mb-3">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck1"> <label class="custom-control-label"
-									for="customCheck1">Remember password</label>
-							</div>
-							<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="submit" onclick="myFunction()">Sign in</button>
-							<hr class="my-4">
-						<!-- </form> -->
-						<!-- <div class="container" style="background-color: #f1f1f1">
-							<button type="button" class="cancelbtn">Cancel</button>
-							<span class="psw">Forgot <a href="#">password?</a></span>
-						</div> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <label for="email" style="font-family:sans-serif"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="Username" required>
+
+    <label for="psw" style="font-family:sans-serif"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+   
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px;font-family:sans-serif"> Remember me
+    </label>
+
+    <p>By using this service you agree to our <a href="#" style="color:dodgerblue;font-family:sans-serif">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+      
+      <button type="submit" class="signupbtn" style="font-family:sans-serif" onclick="myFunction()">Sign In</button>
+	  <button type="button" class="cancelbtn" style="font-family:sans-serif">Cancel</button>
+    </div>
+  </div>
+</form>
+  </div>
+</div>
+
 </body>
-
 </html>

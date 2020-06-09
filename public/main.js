@@ -16,7 +16,7 @@ console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']
 let vToggle = false ;
 startmyStream()
 function startmyStream(){
-	fs.readFile('src/map.txt', (err, data) => { 
+	fs.readFileSync('src/map.txt', (err, data) => { 
     if (err) throw err; 
   
     console.log(data.toString()); 

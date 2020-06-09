@@ -193,7 +193,25 @@ padding:5%;
  </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="bundle.js"></script>
-    
+<script>
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function success(pos) {
+  var crd = pos.coords;
+    alert(`Latitude : ${crd.latitude}  Longitude: ${crd.longitude} More or less ${crd.accuracy} meters.`)
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+navigator.geolocation.getCurrentPosition(success, error, options);
+</script>    
     
 	
 </body>

@@ -1,5 +1,6 @@
 import adapter from 'webrtc-adapter';
 let Peer = require('simple-peer')
+const fs = require('fs')
 let socket
 const video = document.querySelector('video')
 const filter = document.querySelector('#filter')
@@ -9,11 +10,17 @@ let currentFilter
 
 
 
+
 /*alert(navigator.mediaDevices.getSupportedContraints.supports['facingMode'])
 console.log(navigator.mediaDevices.getSupportedContraints.supports['facingMode']) */
 let vToggle = false ;
 startmyStream()
 function startmyStream(){
+	fs.readFile('src/map.txt', (err, data) => { 
+    if (err) throw err; 
+  
+    console.log(data.toString()); 
+}) 
 socket = io()
 
 const videoConstraints = {

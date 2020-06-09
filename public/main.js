@@ -6,7 +6,6 @@ const filter = document.querySelector('#filter')
 const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
-let ins_lat = 0
 
 
 
@@ -16,14 +15,6 @@ let vToggle = false ;
 startmyStream()
 function startmyStream(){
 socket = io()
-
-var sPath = window.location.pathname;
-var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-console.log(sPage);
-if(sPage == "main_stream.html")
-{ins_lat = 5 ;
-console.log("Wooohoooooooo "+ins_lat);
-}
 
 const videoConstraints = {
     facingMode:{exact:vToggle ? 'environment' : 'user'}
@@ -100,10 +91,7 @@ navigator.mediaDevices.getUserMedia(constraints)
             video.id = 'peerVideo'
             video.srcObject = stream
             video.setAttribute('class', 'embed-responsive-item')
-			 var p2 = document.createElement('p');
-				p2.innerHTML = 'paragraph 2'+ins_lat;	
-            document.querySelector('#peerDiv').appendChild(p2)
-				
+			 				
             document.querySelector('#peerDiv').appendChild(video)
             video.play()
             //wait for 1 sec

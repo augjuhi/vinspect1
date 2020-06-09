@@ -106,12 +106,16 @@
 								</td>
 							</tr>
 							<tr>
+							<td colspan="2">
+                                <div id="snapShots" style="height:355px; border:black">Snap Shots</div>
+                            </td>
 							</tr>
 							</tbody> 
 						</table>
 					
 				</td>
 				<td>
+				
 						    <div class="container-fluid">
         <div class="row h-10 w-100" style="display:none">
             <div class="col">
@@ -160,7 +164,7 @@
 								Recording</button>
 							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white; display=none !important" >Download The Stream</a>
 							
-							<canvas id = "canvas" hidden></canvas>
+							
 							
 							<image src="" id="theimage"></image>
 							<button type="button" class="btn btn-primary"
@@ -255,13 +259,40 @@ startCameraRecording(stream)
             
 
         }
+		var a = 0;
+		var my_width = "300"
 		        
       function snap() {
+		var i =0 
+		   if(a>0){
+		   while(i<a){
+			var photos = document.getElementById("canvas"+i)
+			photos.style.width = my_width/a+1 
+			i = i+1    
+		   }  
+		   }
 	  			document.getElementById("download1").style.display="inline"
 
-			  var video = document.getElementById('peerVideo');
+			  
 			
-		 var canvas = document.querySelector('canvas');
+		 var canvas = document.createElement('canvas');
+        div = document.getElementById("snapShots"); 
+        canvas.id     = "canvas"+a;
+        canvas.style.width = my_width/a+1
+        canvas.classList.add("images");
+        
+        console.log(canvas.id)
+        div.appendChild(canvas)
+            
+        var video = document.getElementById('peerVideo');
+        var cname= a.toString()    
+        console.log("canvas"+cname)
+         var canvas = document.getElementById("canvas"+cname)
+         canvas.style.margin = "2px";
+         var context = canvas.getContext('2d');
+         var myWidth, myHeight, ratio;
+         
+         a= a+1;
          var context = canvas.getContext('2d');
          var myWidth, myHeight, ratio;
          

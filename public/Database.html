@@ -1,0 +1,30 @@
+<html>
+   <head>
+      <title>Connecting MySQL Server</title>
+   </head>
+   <body>
+   <p>Please get started</p>
+      
+	  <?php
+         $dbhost = 'sql3.freesqldatabase.com:3306';
+         $dbuser = 'sql3347192';
+         $dbpass = 'diXUxgQN1Z';
+		 $dbname = 'sql3347192'
+		 $mysqli = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
+	// Check connection
+	if ($mysqli -> connect_errno) {
+	  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+	  exit();
+	}
+	// Perform query
+	if ($result = $mysqli -> query("SELECT * FROM Location")) {
+	  echo "Returned rows are: " . $result -> num_rows;
+	  // Free result set
+	  $result -> free_result();
+	}
+	$mysqli -> close();
+		   
+		  ?>
+	  
+   </body>
+</html>

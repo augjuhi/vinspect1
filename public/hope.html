@@ -50,7 +50,7 @@ function success(pos) {
   console.log(`More or less ${crd.accuracy} meters.`);
   localStorage.setItem("latitude", crd.latitude);
   console.log(localStorage.getItem("latitude"))
-
+	alert("Taking your Location "+crd.latitude)
   
 }
 function error(err) {

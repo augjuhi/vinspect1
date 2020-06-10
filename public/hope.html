@@ -8,7 +8,7 @@
  
 
     <!-- Bootstrap CSS -->
-    
+ 
 
  
 
@@ -36,19 +36,29 @@
 
   </body>
 <script>
-//import adapter from 'webrtc-adapter';
- // Requiring fs module in which  
-// readFile function is defined. 
-const fs = require('fs') 
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function success(pos) {
+  var crd = pos.coords;
+    
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  localStorage.setItem("latitude", crd.latitude);
+  console.log(localStorage.getItem("latitude"))
+
   
-fs.readFile('src/map.txt', (err, data) => { 
-    if (err) throw err; 
-  
-    console.log(data.toString()); 
-}) 
-</script>
+}
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+navigator.geolocation.getCurrentPosition(success, error, options);
 
-
-
-
+</script>    
+    
+   
 </html>

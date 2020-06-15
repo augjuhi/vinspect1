@@ -30,7 +30,11 @@
 	
 	$(document).ready(function()
 			{
-			
+				const queryString = window.location.search;
+				const urlParams = new URLSearchParams(queryString);
+				//document.getElementById("calimnum").placeholder= urlParams.get('claimNum');
+				document.getElementById("calimnum").innerHTML= urlParams.get('claimNum');
+				document.getElementById("mobilenum").innerHTML = urlParams.get('mobileNum');
 				$("#tablemain").simpleResizableTable(); //.css('background-color', 'red');
 				
 			});
@@ -80,12 +84,13 @@
 		</div>
 	</nav>
 	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padzero">
-		<div class="header1" style="color: red;">
-			<span class="internal_header">Claim Details</span> &nbsp;&nbsp; Claim
-			Number : <input type="text" placeholder="" name="ClaimNo">
-			&nbsp;&nbsp; Mobile Number : <input type="text" placeholder=""
-				name="MobileNo"> &nbsp;&nbsp;
-		</div>
+		<div class="header1" align="center"> <span style="color: black; font-size: 20px; font-weight: bold;" class="internal_header">Claim Details</span>
+            <span style="color: blue; font-size: 18px; font-weight: bold;"> Claim Number :</span>
+            <!-- <input type= text id ="calimnum" name="ClaimNo" placeholder="Names"/> -->
+            <span style="color: red; " id="calimnum"></span>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
+            <span style="color: blue; font-size: 18px; font-weight: bold;">Mobile Number :</span>
+            <span style="color: red;" id="mobilenum"></span>
+        </div>
 	</div>
 	
 	

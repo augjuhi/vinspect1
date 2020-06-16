@@ -31,10 +31,11 @@
 	$(document).ready(function()
 			{
 				const queryString = window.location.search;
-				const urlParams = new URLSearchParams(queryString);
-				//document.getElementById("calimnum").placeholder= urlParams.get('claimNum');
-				document.getElementById("calimnum").innerHTML= urlParams.get('claimNum');
-				document.getElementById("mobilenum").innerHTML = urlParams.get('mobileNum');
+					const urlParams = new URLSearchParams(queryString);
+					//document.getElementById("calimnum").placeholder= urlParams.get('claimNum');
+					document.getElementById("calimnum").innerHTML= urlParams.get('claimNum');
+					document.getElementById("claimantName").innerHTML= urlParams.get('claimantName');
+					document.getElementById("mobilenum").innerHTML = urlParams.get('mobileNum');
 				$("#tablemain").simpleResizableTable(); //.css('background-color', 'red');
 				
 			});
@@ -84,13 +85,22 @@
 		</div>
 	</nav>
 	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padzero">
-		<div class="header1" align="center"> <span style="color: black; font-size: 20px; font-weight: bold;" class="internal_header">Claim Details</span>
-            <span style="color: blue; font-size: 18px; font-weight: bold;"> Claim Number :</span>
-            <!-- <input type= text id ="calimnum" name="ClaimNo" placeholder="Names"/> -->
-            <span style="color: red; " id="calimnum"></span>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
-            <span style="color: blue; font-size: 18px; font-weight: bold;">Mobile Number :</span>
-            <span style="color: red;" id="mobilenum"></span>
-        </div>
+		<div class="header1" align="center">
+			<span style="color: black; font-size: 20px; font-weight: bold;"
+				class="internal_header">Claim Details</span> 
+				
+				<span style="color: #004d99; font-size: 14px;text-transform: capitalize;"> Claimant Name :</span>
+				<!-- <input type= text id ="calimnum" name="ClaimNo" placeholder="Names"/> -->
+				<span style="color: #ff0000; text-transform: capitalize;" id="claimantName"></span>
+				&nbsp;&nbsp; &nbsp;&nbsp;
+				
+				<span style="color: #004d99; font-size: 14px; text-transform: capitalize;"> Claim Number :</span>
+				<span style="color: #ff0000;" id="calimnum"></span>
+				 &nbsp;&nbsp; &nbsp;&nbsp;
+				
+			 	<span style="color: #004d99; font-size: 14px;text-transform: capitalize;">Mobile Number :</span> 
+			 	<span style="color: #ff0000;" id="mobilenum"></span>
+		</div>
 	</div>
 	
 	
@@ -137,6 +147,10 @@
 					
 				</td>
 				<td>
+				<table class="table marzero">
+						<tbody>
+							<tr>
+								<td>
 				
 						    <div class="container-fluid">
         <div class="row h-10 w-100" style="display:none">
@@ -196,7 +210,10 @@
 							<script src="js/mystream.js"> </script>
 
 						</div>
-					
+						</td>
+						</tr>
+					</tbody>
+					</table>
 				</td>
 			</tr>
 		</tbody>

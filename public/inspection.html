@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+
+ 
+
+ 
+ 
+
+ 
+
+    <title>Inception</title>
+  </head>
+
+ 
+
+
+  <body>
+
+
+  </body>
+<script>
+$(document).ready(function () {
+  soapRequest()
+    function soapRequest(){
+  var str = '<?xml version="1.0" encoding="utf-8"?>' +
+'<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+  '<soap:Body>' +
+    '<Add xmlns="http://tempuri.org/">' +
+      '<intA>2345</intA>' +
+      '<intB>876</intB>' +
+    '</Add>' +
+  '</soap:Body>' +
+'</soap:Envelope>';
+ 
+ 
+ 
+        function createCORSRequest(method, url) {
+                    var xhr = new XMLHttpRequest();
+                    if ("withCredentials" in xhr) {
+                        xhr.open(method, url, true);
+                    } else if (typeof XDomainRequest != "undefined") {
+                        alert
+                        xhr = new XDomainRequest();
+                        xhr.open(method, url);
+                    } else {
+                        console.log("CORS not supported");
+                        alert("CORS not supported");
+                        xhr = null;
+                    }
+                    return xhr;
+                }
+        var xhr = createCORSRequest("GET", "http://www.dneonline.com/calculator.asmx?op=Add");
+        if(!xhr){
+         console.log("XHR issue");
+         return;
+        }
+ 
+ 
+ 
+        xhr.onload = function (){
+         var results = xhr.responseText;
+         console.log(results);
+        }
+ 
+ 
+ 
+        xhr.setRequestHeader('Content-Type', 'text/xml');
+        xhr.send(str);
+ }});
+</script>
+   
+</html>

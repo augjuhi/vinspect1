@@ -157,7 +157,7 @@ function CreateDiv() {
     let div = document.createElement('div')
     div.setAttribute('class', "centered")
     div.id = "muteText"
-    div.innerHTML = "Click to Mute/Unmute"
+    div.innerHTML = " "
     document.querySelector('#peerDiv').appendChild(div)
     if (checkboxTheme.checked == true)
         document.querySelector('#muteText').style.color = "#fff"

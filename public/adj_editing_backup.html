@@ -8,12 +8,109 @@
 	<link href="css/app.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/markerjs"></script>
 <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin=""
-    />
+	/>
+	
+	<style>
+		body {font-family: Arial, Helvetica, sans-serif;}
+		
+		#myImg {
+		  border-radius: 5px;
+		  cursor: pointer;
+		  transition: 0.3s;
+		}
+		
+		#myImg:hover {opacity: 0.7;}
+		 
+		
+		
+		/* The Modal (background) */
+		.modal {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		 /* z-index: 1;  Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;w
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.001);
+		}
+		
+		/* Modal Content (image) */
+		.modal-content {
+		  margin: auto;
+		  display: block;
+		  width: 80%;
+		  max-width: 700px;
+		}
+		
+		/* Caption of Modal Image */
+		#caption {
+		  margin: auto;
+		  display: block;
+		  width: 80%;
+		  max-width: 700px;
+		  text-align: center;
+		  color: #ccc;
+		  padding: 10px 0;
+		  height: 150px;
+		}
+		
+		/* Add Animation */
+		.modal-content, #caption {  
+		  -webkit-animation-name: zoom;
+		  -webkit-animation-duration: 0.6s;
+		  animation-name: zoom;
+		  animation-duration: 0.6s;
+		}
+		
+		@-webkit-keyframes zoom {
+		  from {-webkit-transform:scale(0)} 
+		  to {-webkit-transform:scale(1)}
+		}
+		
+		@keyframes zoom {
+		  from {transform:scale(0)} 
+		  to {transform:scale(1)}
+		}
+		
+		/* The Close Button */
+		.close {
+		  position: absolute;
+		  top: 15px;
+		  right: 35px;
+		  color: #000000fc;
+		  font-size: 40px;
+		  font-weight: bold;
+		  transition: 0.3s;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: #bbb;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		.markerjs-toolbar{
+		z-index: 1060 !important;
+		}
+		
+		/* 100% Image Width on Smaller Screens */
+		@media only screen and (max-width: 700px){
+		  .modal-content {
+			width: 100%;
+		  }
+		}
+		</style>
+
     <script
       src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
@@ -60,6 +157,13 @@
 
 .srt-draghandle {
     opacity: 0 ;
+}
+
+#resultImage {
+margin: 2px;
+width: 150px;
+vertical-align: inherit !important;
+
 }
 
 </style>
@@ -136,7 +240,7 @@
 							</tr>
 							<tr>
 							<td colspan="2">
-                                <div id="snapShots" style="height:355px; border:black"></div>
+                                <div id="snapShots" style="height:355px; border:black; max-width:465px;"></div>
                             </td>
 							</tr>
 							</tbody> 
@@ -195,11 +299,33 @@
 							<button id="btn-stop-recording" type="button"
 								style="height: 30px; width: 150px;display=none !important;" class="btn btn-danger" onclick="stopRecording()">Stop
 								Recording</button>
-							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white; display=none !important" >Download The Stream</a>
+							<a id="download" onclick="downloadAll()"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white; display=none !important" >Download The Stream</a>
 							
 							
 							
 							<image src="" id="theimage"></image>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       
+      <span class="glyphicon glyphicon-pencil" style="margin-top:0%; margin-right:18%;opacity: 100%; font-size:24px; transform:rotate(45deg);color: #b31010;" id="pencil" onclick="hitMe()"></span>        
+      
+	  <button type="button" class="close" style="margin-top:-8px; opacity: 100%; color: #333333; " data-dismiss="modal">×</button>
+   
+       
+      </div>
+      <div class="modal-body">
+   
+    <img class="test_modal" id="img01"  style="width: 650;"/>
+    </div>
+    
+    </div>
+  </div>
+</div>
 							
 								<a id="download1" download="image.jpeg" onclick="snap()"  style="background-color: #804887;padding: 6px 9px 6px 9px; border-radius: 5px;color: white; display=none !important;"}>Snap & Download </a>
 							<button id = "snap" type="button" class="btn btn-info"
@@ -220,7 +346,7 @@
     <script src="bundle.js"></script>
 </body>
 <script>
-
+var urls=[];
 document.onload = function() {myFunction()};
 
 function myFunction() {
@@ -296,14 +422,16 @@ startCameraRecording(stream)
 
         }
 		var a = 0;
-		var my_width = "300"
+		
+		var currentWidth = "150"
 		        
       function snap() {
 		var i =0 
 		   if(a>0){
 		   while(i<a){
 			var photos = document.getElementById("canvas"+i)
-			photos.style.width = my_width/a+1 
+			photos.style.width = currentWidth
+			
 			i = i+1    
 		   }  
 		   }
@@ -314,9 +442,29 @@ startCameraRecording(stream)
 		 var canvas = document.createElement('canvas');
         div = document.getElementById("snapShots"); 
         canvas.id     = "canvas"+a;
-        canvas.style.width = my_width/a+1
+        canvas.style.width = currentWidth
         canvas.classList.add("images");
         
+		//modal
+		
+		canvas.addEventListener('click', function() { 
+	   //alert(this.id)
+	   	var modal = document.getElementById("myModal");
+	     var canvas = document.getElementById(this.id); 
+		 console.log("Checking Something "+ this.id);
+	     var modalImg = document.getElementById("img01");
+	     var img = canvas.toDataURL("image/png")
+	     modal.style.display = "block";
+	     modalImg.src = canvas.toDataURL("image/png");
+	       //captionText.innerHTML = this.alt;
+	      // Get the <span> element that closes the modal
+	     var span = document.getElementsByClassName("close")[0];
+	     // When the user clicks on <span> (x), close the modal
+	     span.onclick = function() { 
+	       modal.style.display = "none";
+	     }
+   }, false);
+		
         console.log(canvas.id)
         div.appendChild(canvas)
             
@@ -331,28 +479,19 @@ startCameraRecording(stream)
          a= a+1;
          var context = canvas.getContext('2d');
          var myWidth, myHeight, ratio;
-         
-         video.addEventListener('loadedmetadata', function() {
-            //ratio = video.videoWidth/video.videoHeight;
-            //myWidth = video.videoWidth-100;
-            //myHeight = parseInt(ratio,10);
-            var reader = new FileReader();
-                       
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            
-            
+         context.fillRect(0,0,canvas.width,canvas.height);
+         context.drawImage(video,0,0,canvas.width,canvas.height);
 
-         },false);
-	  
-	  
-	  
-	  
-            context.fillRect(0,0,canvas.width,canvas.height);
-            context.drawImage(video,0,0,canvas.width,canvas.height);
-            var download = document.getElementById("download1");   
+		 var canvas1 = document.createElement('canvas');
+   		 canvas1.width=video.videoWidth
+   		 canvas1.height=video.videoHeight
+   		 var context1 = canvas1.getContext('2d');
+   		 context1.fillRect(0,0,canvas1.width,canvas1.height);
+   		 context1.drawImage(video,0,0,canvas1.width,canvas1.height);
+   		 //urls.push(canvas1.toDataURL("image/jpeg"));
+         var download = document.getElementById("download1");   
          
-         	var imageUrl = canvas.toDataURL("image/png")
+         	var imageUrl = canvas1.toDataURL("image/png")
                   .replace("image/png", "image/octet-stream");
          	
          	download.setAttribute("href", imageUrl);
@@ -361,6 +500,32 @@ startCameraRecording(stream)
 			
 			
       }
+
+	  var count=0
+      function downloadAll()
+      {
+    	  var interval = setInterval(download, 300, urls);
+    	  function download(urls) {
+    	    var url = urls.pop();
+    	    var canvas1 = document.getElementById("url");
+    	    var aa = document.createElement('a');
+    	    aa.setAttribute('href',url);
+    	    aa.setAttribute('download', '');
+    	    aa.setAttribute('target', '_blank');
+    	    aa.click();
+    	    if (urls.length == 0) {
+    	      clearInterval(interval);
+    	    }
+    	  } 
+   	  
+    	  count=0;
+    	  
+      }	
+	  
+	  document.getElementsByClassName("images").addEventListener("click",function(){
+	  console.log(this.id);
+	  
+	  });
 	    console.log(localStorage.getItem("latitude"))
 		
 		
@@ -377,6 +542,33 @@ startCameraRecording(stream)
     .bindPopup('Insured Location (Accuracy: '+acc+" metres)" )
     .openPopup();
 
+//New Modal Position	
+
+
+
+function hitMe(){
+console.log("Hello!!!!");
+//console.log("editing image with ID: "+image_to_edit);
+var mark = new markerjs.MarkerArea(document.getElementById("img01"));
+mark.show(function(dataUrl) {
+var my_img =  document.createElement('canvas');
+var my_div = document.getElementById("snapShots"); 
+my_img.id = "resultImage";
+my_img.width = currentWidth;
+//my_img.src = dataUrl;
+var ctx = my_img.getContext("2d");
+var myImg = new Image();
+img.onload = function() {
+   ctx.drawImage(myImg, 0, 0);
+};
+img.src = dataUrl;
+my_div.appendChild(my_img);
+console.log(my_img.id);
+
+});
+$('div[style*="touch-action: none;"]').css('z-index', '1060');
+console.log("done");
+}
 </script>
 
 </html>

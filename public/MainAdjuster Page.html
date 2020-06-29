@@ -1,0 +1,553 @@
+<html>
+
+<head>
+    <title>Virtual Inspection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link href="main.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/markerjs"></script>
+<link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+	/>
+	
+	<style>
+		body {font-family: Arial, Helvetica, sans-serif;}
+		
+		#myImg {
+		  border-radius: 5px;
+		  cursor: pointer;
+		  transition: 0.3s;
+		}
+		
+		#myImg:hover {opacity: 0.7;}
+		 
+		
+		
+		/* The Modal (background) */
+		.modal {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		 /* z-index: 1;  Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;w
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.001);
+		}
+		
+		/* Modal Content (image) */
+		.modal-content {
+		  margin: auto;
+		  display: block;
+		  width: 80%;
+		  max-width: 700px;
+		}
+		
+		/* Caption of Modal Image */
+		#caption {
+		  margin: auto;
+		  display: block;
+		  width: 80%;
+		  max-width: 700px;
+		  text-align: center;
+		  color: #ccc;
+		  padding: 10px 0;
+		  height: 150px;
+		}
+		
+		/* Add Animation */
+		.modal-content, #caption {  
+		  -webkit-animation-name: zoom;
+		  -webkit-animation-duration: 0.6s;
+		  animation-name: zoom;
+		  animation-duration: 0.6s;
+		}
+		
+		@-webkit-keyframes zoom {
+		  from {-webkit-transform:scale(0)} 
+		  to {-webkit-transform:scale(1)}
+		}
+		
+		@keyframes zoom {
+		  from {transform:scale(0)} 
+		  to {transform:scale(1)}
+		}
+		
+		/* The Close Button */
+		.close {
+		  position: absolute;
+		  top: 15px;
+		  right: 35px;
+		  color: #000000fc;
+		  font-size: 40px;
+		  font-weight: bold;
+		  transition: 0.3s;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: #bbb;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		.markerjs-toolbar{
+		z-index: 1060 !important;
+		}
+		
+		/* 100% Image Width on Smaller Screens */
+		@media only screen and (max-width: 700px){
+		  .modal-content {
+			width: 100%;
+		  }
+		}
+		</style>
+
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+	
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script type="text/javascript"        src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript"        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+	<script type="text/javascript"        src="js/myjs.js"></script>
+	<script type="text/javascript"        src="js/sendSms.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function()
+			{
+				const queryString = window.location.search;
+					const urlParams = new URLSearchParams(queryString);
+					//document.getElementById("calimnum").placeholder= urlParams.get('claimNum');
+					document.getElementById("calimnum").innerHTML= urlParams.get('claimNum');
+					document.getElementById("claimantName").innerHTML= urlParams.get('claimantName');
+					document.getElementById("mobilenum").innerHTML = urlParams.get('mobileNum');
+				$("#tablemain").simpleResizableTable(); //.css('background-color', 'red');
+				
+			});
+			
+				
+	</script>
+	
+	
+
+	
+<style type="text/css">
+#claimTable td {
+	font-size: 14px;
+}
+#tablemain th {
+	font-size: 12px;
+}
+ video {
+	width: 100%;
+	height: auto;
+} 
+
+.srt-draghandle {
+    opacity: 0 ;
+}
+
+#resultImage {
+margin: 2px;
+width: 150px;
+vertical-align: inherit !important;
+
+}
+
+</style>
+</head>
+
+<body onload="sendfirstSMS()">
+<nav class="navbar navbar-expand-lg  navbarBGcolor fixed-top padzero"> </nav>
+		<nav class="navbar navbar-default navbar-fixed-top"
+		id="transient-header">
+	
+		<div class="box effect2">
+			<nav class="navbar navbar-default ct_navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="css/imgs/LTIlogo.png" align="top" />
+						<ul class="nav navbar-nav navbar-right pull-right marzero padzero">
+							<li><img src="css/imgs/abcins-c.PNG"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</nav>
+	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padzero">
+		<div class="header1" align="center">
+			<span style="color: black; font-size: 20px; font-weight: bold;"
+				class="internal_header">Claim Details</span> 
+				
+				<span style="color: #004d99; font-size: 14px;text-transform: capitalize;"> Claimant Name :</span>
+				<!-- <input type= text id ="calimnum" name="ClaimNo" placeholder="Names"/> -->
+				<span style="color: #ff0000; text-transform: capitalize;" id="claimantName"></span>
+				&nbsp;&nbsp; &nbsp;&nbsp;
+				
+				<span style="color: #004d99; font-size: 14px; text-transform: capitalize;"> Claim Number :</span>
+				<span style="color: #ff0000;" id="calimnum"></span>
+				 &nbsp;&nbsp; &nbsp;&nbsp;
+				
+			 	<span style="color: #004d99; font-size: 14px;text-transform: capitalize;">Mobile Number :</span> 
+			 	<span style="color: #ff0000;" id="mobilenum"></span>
+		</div>
+	</div>
+	
+	
+	<table class="table marzero" id="tablemain" border="1">
+		<thead>
+			<tr>
+				<th></th>
+				<th><img src="css/imgs/Live-Stream.png" width="110" height="20"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+				<table class="table marzero" id="claimTable">
+							<tbody> 
+							<tr></tr>
+							
+							<tr>
+								<td style="color: #0000ff">Mobile Number</td>
+								<td><input type="text" class="form-control" id="mobileNo"/></td>
+							</tr>
+							<tr>
+								<td style="color: #0000ff">Note</td>
+								<td><textarea rows="06" cols="25" id="note"></textarea></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button type="button" onclick="sendSms()" class="btn btn-success"
+										style="height: 30px; width: 150px; background-color: #e7e7e7; color: black;">
+										Resend SMS</button>
+								</td>
+							</tr>
+							<tr>
+							<td colspan="2">
+                                <div id="snapShots" style="height:355px; border:black; max-width:465px;"></div>
+                            </td>
+							</tr>
+							</tbody> 
+						</table>
+					
+				</td>
+				<td>
+				<table class="table marzero">
+						<tbody>
+							<tr>
+								<td>
+				
+						    <div class="container-fluid">
+        <div class="row h-10 w-100" style="display:none">
+            <div class="col">
+                <select id="filter" class="w-100 bg-dark text-light ml-2 mt-2 select font-weight-bold border">
+                    <option value="none">Normal</option>
+                    <option value="grayscale(100%)">B & W</option>
+                    <option value="sepia(100%)">Old School</option>
+                    <option value="contrast(150%)">Lumination</option>
+                    <option value="blur(20px)">Hidden Mist</option>
+                    <option value="invert(100%)">Dracula</option>
+                    <option value="hue-rotate(180deg">X-men Beast</option>
+                    <option value="saturate(25)">Super Saiyan God</option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="float-right mt-3">
+                    <input class="form-check-input" type="checkbox" id="theme">
+                    <label class="form-check-label" for="theme">
+                        Dark Theme
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row h-100 w-100" style="margin: 20px 20px 20px 0px;">
+            <div class="col-12 col-sm-6 d-flex justify-content-center" style="display:none !important">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video class="embed-responsive-item" muted></video>
+                </div>
+            </div>
+            <div >
+                <div id="peerDiv" style="transform: rotateY(180deg); " class="embed-responsive embed-responsive-16by9">
+                </div>
+            </div>
+        </div>
+    </div>
+						
+						
+						
+						<div class="Video">
+						
+							<button id="btn-start-recording" type="button"
+								class="btn btn-success" style="height: 30px; width: 150px" onclick="captureCamera()">Start
+								Recording</button>
+							<button id="btn-stop-recording" type="button"
+								style="height: 30px; width: 150px;display=none !important;" class="btn btn-danger" onclick="stopRecording()">Stop
+								Recording</button>
+							<a id="download"  style="background-color: chocolate;padding: 6px 9px 6px 9px;border-radius: 5px;color: white; display=none !important" >Download The Stream</a>
+							
+							
+							
+							<image src="" id="theimage"></image>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       
+      <span class="glyphicon glyphicon-pencil" style="margin-top:0%; margin-right:18%;opacity: 100%; font-size:24px; transform:rotate(45deg);color: #b31010;" id="pencil" onclick="hitMe()"></span>        
+      
+	  <button type="button" class="close" style="margin-top:-8px; opacity: 100%; color: #333333; " data-dismiss="modal">×</button>
+   
+       
+      </div>
+      <div class="modal-body">
+   
+    <img class="test_modal" id="img01"  style="width: 650;"/>
+    </div>
+    
+    </div>
+  </div>
+</div>
+							
+								<a id="download1" download="image.jpeg" onclick="snap()"  style="background-color: #804887;padding: 6px 9px 6px 9px; border-radius: 5px;color: white; display=none !important;"}>Snap & Download </a>
+							<button id = "snap" type="button" class="btn btn-info"
+								style="height: 30px; width: 150px">Annotate Picture</button>
+							<script src="js/mystream.js"> </script>
+
+						</div>
+						</td>
+						</tr>
+					</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="map"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="bundle.js"></script>
+</body>
+<script>
+
+document.onload = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById('btn-stop-recording').onload = true;
+}
+ 
+ document.onload = function(){myScript};
+ var mediaRecorder; // globally accessible
+        const options = {mimeType: 'video/webm'};
+        var recordedChunks = [];
+        var downloadLink = document.getElementById('download');
+
+        function captureCamera() {
+		document.getElementById("btn-stop-recording").style.display="inline"
+		document.getElementById("btn-start-recording").style.display="none"
+
+           'use strict';
+const incomingStream = document.getElementById('peerVideo');
+  let stream;
+  const fps = 0;
+  if (incomingStream.captureStream) {
+    stream = incomingStream.captureStream(fps);
+  } else if (incomingStream.mozCaptureStream) {
+    stream = incomingStream.mozCaptureStream(fps);
+  } else {
+    console.error('Stream capture is not supported');
+    stream = null;
+  }
+startCameraRecording(stream)
+}
+
+        function startCameraRecording(stream) {
+            document.getElementById('btn-start-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false;
+				
+                mediaRecorder = new MediaRecorder(stream, options);
+
+                mediaRecorder.addEventListener('dataavailable', function(e) {
+                  if (e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                    console.log("e.data="+e.data);
+                  }
+                });
+                  mediaRecorder.start();
+                  InitUploading();
+        }
+
+        function stopRecording() {
+			document.getElementById("btn-start-recording").style.display="inline"
+			document.getElementById("download").style.display="inline"
+
+
+           /* document.getElementById('btn-stop-recording').disabled = true;
+            document.getElementById('btn-start-recording').disabled = false; */
+            mediaRecorder.stop();
+            mediaRecorder.addEventListener('stop', function() {
+                downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
+                downloadLink.download = 'acetest.webm';
+              });
+
+        }
+		function InitUploading() {
+            // get recorded blob
+            blob = new Blob(recordedChunks,{'type' : 'video/webm'});
+            console.log("recordedChunks="+recordedChunks);
+            console.log("blob="+blob)
+			url = window.URL.createObjectURL(blob);
+				this.href = url;
+				this.target = '_blank';
+  	
+			this.download = 'my-download.webm';
+            
+
+        }
+		var a = 0;
+		
+		var currentWidth = "150"
+		        
+      function snap() {
+		var i =0 
+		   if(a>0){
+		   while(i<a){
+			var photos = document.getElementById("canvas"+i)
+			photos.style.width = currentWidth
+			
+			i = i+1    
+		   }  
+		   }
+	  			document.getElementById("download1").style.display="inline"
+
+			  
+			
+		 var canvas = document.createElement('canvas');
+        div = document.getElementById("snapShots"); 
+        canvas.id     = "canvas"+a;
+        canvas.style.width = currentWidth
+        canvas.classList.add("images");
+        
+		//modal
+		
+		canvas.addEventListener('click', function() { 
+	   //alert(this.id)
+	   	var modal = document.getElementById("myModal");
+	     var canvas = document.getElementById(this.id); 
+		 console.log("Checking Something "+ this.id);
+	     var modalImg = document.getElementById("img01");
+	     var img = canvas.toDataURL("image/png")
+	     modal.style.display = "block";
+	     modalImg.src = canvas.toDataURL("image/png");
+	       //captionText.innerHTML = this.alt;
+	      // Get the <span> element that closes the modal
+	     var span = document.getElementsByClassName("close")[0];
+	     // When the user clicks on <span> (x), close the modal
+	     span.onclick = function() { 
+	       modal.style.display = "none";
+	     }
+   }, false);
+		
+        console.log(canvas.id)
+        div.appendChild(canvas)
+            
+        var video = document.getElementById('peerVideo');
+        var cname= a.toString()    
+        console.log("canvas"+cname)
+         var canvas = document.getElementById("canvas"+cname)
+         canvas.style.margin = "2px";
+         var context = canvas.getContext('2d');
+         var myWidth, myHeight, ratio;
+         
+         a= a+1;
+         var context = canvas.getContext('2d');
+         var myWidth, myHeight, ratio;
+         context.fillRect(0,0,canvas.width,canvas.height);
+         context.drawImage(video,0,0,canvas.width,canvas.height);
+
+		 var canvas1 = document.createElement('canvas');
+   		 canvas1.width=video.videoWidth
+   		 canvas1.height=video.videoHeight
+   		 var context1 = canvas1.getContext('2d');
+   		 context1.fillRect(0,0,canvas1.width,canvas1.height);
+   		 context1.drawImage(video,0,0,canvas1.width,canvas1.height);
+   		 //urls.push(canvas1.toDataURL("image/jpeg"));
+         var download = document.getElementById("download1");   
+         
+         	var imageUrl = canvas1.toDataURL("image/png")
+                  .replace("image/png", "image/octet-stream");
+         	
+         	download.setAttribute("href", imageUrl);
+         	//document.getElementById("theimage").src = imageUrl;
+			
+			
+			
+      }
+	  
+	  document.getElementsByClassName("images").addEventListener("click",function(){
+	  console.log(this.id);
+	  
+	  });
+	    console.log(localStorage.getItem("latitude"))
+		
+		
+	var acc = 50
+    var map = L.map('map',{
+    center: [21.457462,92.54874],
+    zoom: 18
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    L.marker([21.457462,92.54874]).addTo(map)
+    .bindPopup('Insured Location (Accuracy: '+acc+" metres)" )
+    .openPopup();
+
+//New Modal Position	
+
+
+
+function hitMe(){
+console.log("Hello!!!!");
+//console.log("editing image with ID: "+image_to_edit);
+var mark = new markerjs.MarkerArea(document.getElementById("img01"));
+mark.show(function(dataUrl) {
+var my_img =  document.createElement('canvas');
+var my_div = document.getElementById("snapShots"); 
+my_img.id = "resultImage";
+my_img.width = currentWidth;
+//my_img.src = dataUrl;
+var ctx = my_img.getContext("2d");
+var myImg = new Image();
+img.onload = function() {
+   ctx.drawImage(myImg, 0, 0);
+};
+img.src = dataUrl;
+my_div.appendChild(my_img);
+console.log(my_img.id);
+
+});
+$('div[style*="touch-action: none;"]').css('z-index', '1060');
+console.log("done");
+}
+</script>
+
+</html>

@@ -504,9 +504,11 @@ startCameraRecording(stream)
 	  var count=0
       function downloadAll()
       {
-    	  var interval = setInterval(download, 300, urls);
-    	  function download(urls) {
-    	    var url = urls.pop();
+		  var urls1=[];
+		  urls1=urls.slice();
+    	  var interval = setInterval(download, 300, urls1);
+    	  function download(urls1) {
+    	    var url = urls1.pop();
     	    var canvas1 = document.getElementById("url");
     	    var aa = document.createElement('a');
     	    aa.setAttribute('href',url);

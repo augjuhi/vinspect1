@@ -488,7 +488,7 @@ startCameraRecording(stream)
    		 var context1 = canvas1.getContext('2d');
    		 context1.fillRect(0,0,canvas1.width,canvas1.height);
    		 context1.drawImage(video,0,0,canvas1.width,canvas1.height);
-   		 //urls.push(canvas1.toDataURL("image/jpeg"));
+   		 urls.push(canvas1.toDataURL("image/jpeg"));
          var download = document.getElementById("download1");   
          
          	var imageUrl = canvas1.toDataURL("image/png")
